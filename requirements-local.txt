@@ -1,0 +1,26 @@
+# DataMate 2026 - Local inference dependencies
+#
+# Nen dung Python 3.10 - 3.12 (tranh 3.13 vi mot so wheel CUDA chua co).
+#
+#   py -3.12 -m venv .venv
+#   .venv\Scripts\activate
+#   python -m pip install --upgrade pip
+#   pip install -r requirements-local.txt
+#
+# Neu co GPU NVIDIA, cai torch ban CUDA truoc de khong tai nham ban CPU:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+
+torch>=2.4
+transformers>=4.46
+peft>=0.18
+accelerate>=1.0
+safetensors>=0.4
+bitsandbytes>=0.45          # 4-bit, chi huu ich khi co GPU CUDA
+pandas>=2.2
+numpy>=1.26
+openpyxl>=3.1               # du phong khi khong co calamine
+python-calamine>=0.2        # doc .xlsx nhanh gap ~10 lan openpyxl (tu dong dung neu co)
+
+# --- Tuy chon: chi nen cai tren Linux/WSL/Colab (Windows khong co triton) ---
+# unsloth
+# triton

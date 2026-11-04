@@ -1,0 +1,39 @@
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Dữ liệu cuộc thi & model (không đưa lên GitHub)
+datamate_public_test/
+datamate_lora_adapter/
+*.zip
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+
+# Kết quả chạy & log
+submission*.jsonl
+*.stats.json
+*.log
+run*.txt
+
+# File tạm khi debug
+_t*.py
+_t*.jsonl
+_tmp*
+_*.log
+
+# OS / editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Ban notebook cu (backup ca nhan)
+*_old.ipynb
