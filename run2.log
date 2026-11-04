@@ -1,0 +1,1686 @@
+📄 Dữ liệu : E:\workspace\zaloaic2026_nguyen\datamate_public_test
+📄 Câu hỏi : 1000 (từ questions.jsonl)
+🔧 Thiết bị: CUDA - NVIDIA GeForce RTX 3060
+🔧 Base model: unsloth/Qwen2.5-Coder-7B-Instruct-bnb-4bit
+🔧 LoRA adapter: E:\workspace\zaloaic2026_nguyen\datamate_lora_adapter\lora_adapter
+🔧 4-bit: True
+ℹ️  Không có Unsloth (ModuleNotFoundError) — bình thường trên Windows.
+    Dùng transformers+peft, vẫn chạy trên GPU.
+⏳ Đang nạp base model. Lần đầu phải TẢI ~4-5GB từ HuggingFace (có thể mất 5-20 phút tùy mạng), các lần sau lấy từ cache.
+    Muốn thấy thanh tiến trình tải: chạy `--prefetch` trước.
+    Cache: C:\Users\theba\.cache\huggingface\hub
+    VRAM: trống 11.0/12.0 GB (model cần ~6 GB)
+⏳ Đang gắn LoRA adapter...
+✅ Nạp model bằng transformers + peft.
+🚀 Bắt đầu suy luận: 1000 câu cần chạy
+
+   [q_008fdebb6ec9] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 11 năm 2025
+filtered_df = df[(df['Ngày đặt hàng'].str[:7] == '2025-11') & (df['Trạng thái đơn hàng'] == 'Đã hoàn thành')]
+
+# Lọc dữ liệu cho nhóm trà
+teahouse_df = filtered_df[filtered_df['Tên sản phẩm'].str.contains('Trà', na=False)]
+
+# Tính tổng số ly đã bán
+total_cups_sold = teahouse_df.groupby('Tên sản phẩm')['Số lượng sản phẩm'].sum().reset_index()
+
+# Tìm sản phẩm bán được nhiều ly nhất
+most_cups_sold_product = total_cups_sold.loc[total_cups_sold['Số lượng sản phẩm'].idxmax()]
+
+result = most_cups_sold_product['Tên sản phẩm']
+   Lỗi: không
+   [q_009187cd2960] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu
+df_sales = pd.read_csv('SoBanHang_T05_2026.csv')
+
+# Lọc dữ liệu cho tháng 5/2026 và sản phẩm cần tìm
+filtered_df = df_sales[(df_sales['Thời gian'] == '2026-05') & 
+                      (df_sales['Hàng bán'] == 'Ống PVC Bình Minh D50 cây 4m')]
+
+# Tính tổng số lượng bán
+total_quantity_sold = filtered_df['SL bán'].sum()
+
+# Gán kết quả
+result = total_quantity_sold
+   Lỗi: FileNotFoundError: [Errno 2] No such file or directory: 'SoBanHang_T05_2026.csv'
+   [q_009187cd2960] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu
+df_sales = tables['SoBanHang_T05_2026']
+
+# Lọc dữ liệu cho tháng 5/2026 và sản phẩm cần tìm
+filtered_df = df_sales[(df_sales['Thời gian'] == '2026-05') & 
+                      (df_sales['Hàng bán'] == 'Ống PVC Bình Minh D50 cây 4m')]
+
+# Tính tổng số lượng bán
+total_quantity_sold = filtered_df['SL bán'].sum()
+
+# Gán kết quả
+result = total_quantity_sold
+   Lỗi: không
+   [q_00bf8df3ea0b] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho ngày neo
+as_of_date = '2025-03-04'
+df = pd.concat([tables['BanHang_T9_2025'], tables['BanHang_T8_2025'], tables['BanHang_T7_2025'], tables['BanHang_T6_2025']])
+df = df[(pd.to_datetime(df['Ngày đặt hàng']).dt.date == pd.to_datetime(as_of_date).date()) & (df['Trạng thái đơn hàng'] == 'Đã hoàn thành')]
+
+# Tính doanh thu
+result = df['Tổng tiền'].sum()
+   Lỗi: ValueError: time data "Ngày đặt hàng" doesn't match format "%Y-%m-%d". You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+   [q_00bf8df3ea0b] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho ngày neo
+as_of_date = '2025-03-04'
+df = pd.concat([tables['BanHang_T9_2025'], tables['BanHang_T8_2025'], tables['BanHang_T7_2025'], tables['BanHang_T6_2025']])
+df = df[df['Ngày đặt hàng'] == as_of_date]  # Giả sử 'Ngày đặt hàng' đã ở định dạng 'YYYY-MM-DD'
+
+# Tính doanh thu
+result = df['Tổng tiền'].sum()
+   Lỗi: không
+
+⏸️  Đã dừng bằng Ctrl+C. File output vẫn giữ các câu đã xong, chạy lại sẽ resume.
+📄 Dữ liệu : E:\workspace\zaloaic2026_nguyen\datamate_public_test
+📄 Câu hỏi : 1000 (từ questions.jsonl)
+🔧 Thiết bị: CUDA - NVIDIA GeForce RTX 3060
+🔧 Base model: unsloth/Qwen2.5-Coder-7B-Instruct-bnb-4bit
+🔧 LoRA adapter: E:\workspace\zaloaic2026_nguyen\datamate_lora_adapter\lora_adapter
+🔧 4-bit: True
+ℹ️  Không có Unsloth (ModuleNotFoundError) — bình thường trên Windows.
+    Dùng transformers+peft, vẫn chạy trên GPU.
+⏳ Đang nạp base model. Lần đầu phải TẢI ~4-5GB từ HuggingFace (có thể mất 5-20 phút tùy mạng), các lần sau lấy từ cache.
+    Muốn thấy thanh tiến trình tải: chạy `--prefetch` trước.
+    Cache: C:\Users\theba\.cache\huggingface\hub
+    VRAM: trống 11.0/12.0 GB (model cần ~6 GB)
+⏳ Đang gắn LoRA adapter...
+✅ Nạp model bằng transformers + peft.
+🚀 Bắt đầu suy luận: 1000 câu cần chạy
+
+   [q_008fdebb6ec9] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng tháng 11 năm 2025
+filtered_df = df[(df['Ngày đặt hàng'].str[:7] == '2025-11') & (df['Trạng thái đơn hàng'] == 'Đã hoàn thành')]
+
+# Lọc sản phẩm trong nhóm trà
+tea_products = filtered_df[filtered_df['Tên sản phẩm'].str.contains('Trà', na=False)]
+
+# Tính tổng số ly đã bán
+total_cups_sold = tea_products.groupby('Tên sản phẩm')['Số lượng sản phẩm'].sum().reset_index()
+
+# Tìm sản phẩm bán được nhiều ly nhất
+most_cups_sold_product = total_cups_sold.loc[total_cups_sold['Số lượng sản phẩm'].idxmax()]
+
+result = most_cups_sold_product['Tên sản phẩm']
+   Lỗi: không
+   [q_009187cd2960] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu
+df_sales = pd.read_csv('SoBanHang_T05_2026.csv')
+
+# Lọc dữ liệu cho tháng 5/2026 và sản phẩm cần tìm
+filtered_df = df_sales[(df_sales['Thời gian'] == '2026-05') & 
+                      (df_sales['Hàng bán'] == 'Ống PVC Bình Minh D50 cây 4m')]
+
+# Tính tổng số lượng bán
+total_quantity_sold = filtered_df['SL bán'].sum()
+
+# Gán kết quả
+result = total_quantity_sold
+   Lỗi: FileNotFoundError: [Errno 2] No such file or directory: 'SoBanHang_T05_2026.csv'
+   [q_009187cd2960] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu
+df_sales = tables['SoBanHang_T05_2026']
+
+# Lọc dữ liệu cho tháng 5/2026 và sản phẩm cần tìm
+filtered_df = df_sales[(df_sales['Thời gian'] == '2026-05') & 
+                      (df_sales['Hàng bán'] == 'Ống PVC Bình Minh D50 cây 4m')]
+
+# Tính tổng số lượng bán
+total_quantity_sold = filtered_df['SL bán'].sum()
+
+# Gán kết quả
+result = total_quantity_sold
+   Lỗi: không
+   [q_00bf8df3ea0b] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng đã hoàn thành và không phải đơn trả hàng
+filtered_df = BanHang_T3_2025[(BanHang_T3_2025['Trạng thái đơn hàng'] == 'Đã hoàn thành') & 
+                             (BanHang_T3_2025['Mã đơn hàng'].isin(BanHang_T3_2025[BanHang_T3_2025['Trạng thái đơn hàng'] != 'Đã huỷ']['Mã đơn hàng']))]
+
+# Tính doanh thu
+doanh_thu = filtered_df['Tổng tiền'].sum()
+
+# Gán kết quả vào biến result
+result = doanh_thu
+   Lỗi: không
+🔥 10/1000 | 18.98s/câu | còn ~313.2 phút | có đáp án 8/10 | abstain 2 | lỗi 1 | timeout 0
+
+⏸️  Đã dừng bằng Ctrl+C. File output vẫn giữ các câu đã xong, chạy lại sẽ resume.
+📄 Dữ liệu : E:\workspace\zaloaic2026_nguyen\datamate_public_test
+📄 Câu hỏi : 1000 (từ questions.jsonl)
+🔧 Thiết bị: CUDA - NVIDIA GeForce RTX 3060
+🔧 Base model: unsloth/Qwen2.5-Coder-7B-Instruct-bnb-4bit
+🔧 LoRA adapter: E:\workspace\zaloaic2026_nguyen\datamate_lora_adapter\lora_adapter
+🔧 4-bit: True
+ℹ️  Không có Unsloth (ModuleNotFoundError) — bình thường trên Windows.
+    Dùng transformers+peft, vẫn chạy trên GPU.
+⏳ Đang nạp base model. Lần đầu phải TẢI ~4-5GB từ HuggingFace (có thể mất 5-20 phút tùy mạng), các lần sau lấy từ cache.
+    Muốn thấy thanh tiến trình tải: chạy `--prefetch` trước.
+    Cache: C:\Users\theba\.cache\huggingface\hub
+    VRAM: trống 11.0/12.0 GB (model cần ~6 GB)
+⏳ Đang gắn LoRA adapter...
+✅ Nạp model bằng transformers + peft.
+🚀 Bắt đầu suy luận: 1000 câu cần chạy
+
+   [q_008fdebb6ec9] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho kỳ 2025-11
+filtered_df = BanHang_T11_2025[BanHang_T11_2025['Ngày đặt hàng'].str[:7] == '2025-11']
+
+# Lọc đơn huỷ/trả hàng
+filtered_df = filtered_df[(filtered_df['Trạng thái đơn hàng'] == 'Đã hoàn thành') | (filtered_df['Trạng thái đơn hàng'] == 'Đang giao')]
+
+# Lọc sản phẩm trà
+tea_products = ['Trà chanh (L)', 'Trà xanh (L)', 'Trà hoa hồng (L)', 'Trà sen (L)', 'Trà trà (L)']
+filtered_df = filtered_df[filtered_df['Tên sản phẩm'].isin(tea_products)]
+
+# Tính tổng số ly trà bán được
+result = filtered_df.groupby('Tên sản phẩm')['Số lượng sản phẩm'].sum().idxmax()
+   Lỗi: không
+   [q_009187cd2960] mã sinh ra:
+import pandas as pd
+
+# Load data
+df_sales = pd.read_csv('SoBanHang_T05_2026.csv')
+df_calendar = pd.read_csv('calendar.csv')
+
+# Convert date columns to datetime
+df_sales['Thời gian'] = pd.to_datetime(df_sales['Thời gian'])
+df_calendar['date'] = pd.to_datetime(df_calendar['date'])
+
+# Filter sales for May 2026
+sales_may_2026 = df_sales[(df_sales['Thời gian'].dt.year == 2026) & (df_sales['Thời gian'].dt.month == 5)]
+
+# Filter products
+product_name = 'Ống PVC Bình Minh D50 cây 4m'
+sales_product = sales_may_2026[sales_may_2026['Hàng bán'] == product_name]
+
+# Calculate total quantity sold
+total_quantity_sold = sales_product['SL bán'].sum()
+
+result = total_quantity_sold
+   Lỗi: không
+   [q_00bf8df3ea0b] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng có trạng thái 'Huỷ' hoặc 'Trả hàng'
+filtered_df = BanHang_T3_2025[(BanHang_T3_2025['Trạng thái đơn hàng'] == 'Huỷ') | (BanHang_T3_2025['Trạng thái đơn hàng'] == 'Trả hàng')]
+
+# Lọc đơn hàng theo kỳ cần tính (2025-03-04)
+filtered_df = filtered_df[filtered_df['Ngày đặt hàng'].str[:10] == '2025-03-04']
+
+# Tính doanh thu
+doanh_thu = filtered_df['Tổng tiền'].sum()
+
+# Gán kết quả vào biến result
+result = doanh_thu
+   Lỗi: không
+   [q_00c4e24fa228] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu BanHang_2026_T06_2026 theo kỳ và loại bỏ các đơn huỷ/trả
+filtered_data = BanHang_2026_T06_2026[(BanHang_2026_T06_2026['Ngày'] >= '2026-06-01') & 
+                                      (BanHang_2026_T06_2026['Ngày'] <= '2026-06-30') &
+                                      (BanHang_2026_T06_2026['Ghi chú'].isna())]
+
+# Tính tổng doanh thu
+total_revenue = filtered_data['TT'].sum()
+
+result = total_revenue
+   Lỗi: không
+   [q_013b4ff35811] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng đã hoàn thành và nằm trong khoảng thời gian từ 2025-11-10 đến 2025-11-16
+filtered_orders = SoBanHang_T11_2025[(SoBanHang_T11_2025['Thời gian'] >= '2025-11-10') & 
+                                    (SoBanHang_T11_2025['Thời gian'] <= '2025-11-16') & 
+                                    (SoBanHang_T11_2025['Trạng thái xử lý'] == 'Đã hoàn thành')]
+
+# Tính tổng doanh thu
+total_revenue = filtered_orders['Amount'].sum()
+
+result = total_revenue
+   Lỗi: không
+   [q_014cdcc1da6e] mã sinh ra:
+# Lọc dữ liệu theo ngày và thời gian bán
+filtered_data = chi_tiet_hoa_don[(chi_tiet_hoa_don['Ngày giao dịch'] == '2025-08-26') & (chi_tiet_hoa_don['Giờ bán'].str.contains('ca chiều'))]
+
+# Tính tổng tiền bán
+total_sales = filtered_data['Thành tiền'].sum()
+
+# Lưu kết quả vào biến result
+result = total_sales
+   Lỗi: không
+   [q_01ac0fc9f2a2] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu từ bảng BanHang_PhieuThu
+df = pd.read_csv('BanHang_PhieuThu.csv')
+
+# Lọc ra các đơn không phải là huỷ/trả hàng và thuộc thời gian tuần qua
+current_date = pd.Timestamp.now()
+one_week_ago = current_date - pd.Timedelta(weeks=1)
+filtered_df = df[(df['Ma don'].str.startswith('ORD')) & (df['Ngày TT'] >= one_week_ago)]
+
+# Tính tổng tiền thu và số lượng đơn
+total_revenue = filtered_df['Tiền thu'].sum()
+number_of_orders = len(filtered_df)
+
+# Tính trung bình mỗi đơn
+average_revenue_per_order = total_revenue / number_of_orders if number_of_orders > 0 else 0
+
+# Lưu kết quả vào biến result
+result = average_revenue_per_order
+   Lỗi: TypeError: '>=' not supported between instances of 'str' and 'Timestamp'
+   [q_01ac0fc9f2a2] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu từ bảng BanHang_PhieuThu
+df = pd.read_csv('BanHang_PhieuThu.csv')
+
+# Chuyển đổi cột 'Ngày TT' thành datetime
+df['Ngày TT'] = pd.to_datetime(df['Ngày TT'])
+
+# Lọc ra các đơn không phải là huỷ/trả hàng và thuộc thời gian tuần qua
+current_date = pd.Timestamp.now()
+one_week_ago = current_date - pd.Timedelta(weeks=1)
+filtered_df = df[(df['Ma don'].str.startswith('ORD')) & (df['Ngày TT'] >= one_week_ago)]
+
+# Tính tổng tiền thu và số lượng đơn
+total_revenue = filtered_df['Tiền thu'].sum()
+number_of_orders = len(filtered_df)
+
+# Tính trung bình mỗi đơn
+average_revenue_per_order = total_revenue / number_of_orders if number_of_orders > 0 else 0
+
+# Lưu kết quả vào biến result
+result = average_revenue_per_order
+   Lỗi: không
+   [q_01ba91ff94c6] mã sinh ra:
+import pandas as pd
+
+# Lấy dữ liệu từ bảng ChiTietHoaDon_1
+df = tables['ChiTietHoaDon_1']
+
+# Chuyển đổi cột Giờ bán thành datetime
+df['Giờ bán'] = pd.to_datetime(df['Giờ bán'])
+
+# Lọc ra những đơn đã hoàn thành (TT đơn == 'đã xong')
+completed_orders = df[df['TT đơn'] == 'đã xong']
+
+# Tính tổng số lượng từng món hàng
+item_sales = completed_orders.groupby('Tên hàng')['SL lẻ'].sum().reset_index()
+
+# Sắp xếp theo số lượng giảm dần và lấy top 5
+top_5_items = item_sales.sort_values(by='SL lẻ', ascending=False).head(5)
+
+# Lấy tên của 5 món hàng bán chạy nhất
+result = top_5_items['Tên hàng'].tolist()
+   Lỗi: không
+   [q_01d1099489a0] mã sinh ra:
+import pandas as pd
+
+# Load data
+df = pd.read_json('path_to_your_data.json')
+
+# Filter data for March 2025 and March 2024
+df_march_2025 = df[(df['Ngày đặt hàng'].str[:7] == '2025-03')]
+df_march_2024 = df[(df['Ngày đặt hàng'].str[:7] == '2024-03')]
+
+# Calculate total revenue for each month
+total_revenue_march_2025 = df_march_2025['Tổng tiền'].sum()
+total_revenue_march_2024 = df_march_2024['Tổng tiền'].sum()
+
+# Calculate percentage change
+percentage_change = ((total_revenue_march_2025 - total_revenue_march_2024) / total_revenue_march_2024) * 100
+
+# Format result
+result = f"{percentage_change:.2f}%"
+   Lỗi: FileNotFoundError: [Errno 2] No such file or directory: 'path_to_your_data.json'
+   [q_01d1099489a0] mã sinh ra:
+import pandas as pd
+
+# Load data from BanHang_Thang03_2025 table
+df_march_2025 = pd.DataFrame([
+    {"Mã đơn hàng": "ORD004944", "Ngày đặt hàng": "2025-03-01", "Trạng thái đơn hàng": "ok", "Tên khách hàng": "Khách lẻ", "Tên sản phẩm": "Enterogermina 2 tỷ/5ml hộp 20 ống", "Số lượng sản phẩm": 1, "Giá sản phẩm": 194000, "Tổng tiền": 194000, "Đơn vị tính": "hộp"},
+    # Add more rows as needed
+])
+
+# Load data from BanHang_Thang03_2024 table
+df_march_2024 = pd.DataFrame([
+    {"Mã đơn hàng": "ORD002634", "Ngày đặt hàng": "2024-03-01", "Trạng thái đơn hàng": "ok", "Tên khách hàng": "Diệp Hoa Tâm", "Tên sản phẩm": "Fugacar 500mg hộp 1 viên", "Số lượng sản phẩm": 1, "Giá sản phẩm": 22000, "Tổng tiền": 22000, "Đơn vị tính
+   Lỗi: SyntaxError: unterminated string literal (detected at line 10) (<sandbox>, line 10)
+❌ q_01d1099489a0: SyntaxError: unterminated string literal (detected at line 10) (<sandbox>, line 10)
+   [q_01d1fc600b26] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng Heineken 330ml trong tháng 7 năm 2025
+heineken_order = df[(df['Tên hàng hóa'] == 'Heineken 330ml') & 
+                    (pd.to_datetime(df['Ngày']).dt.year == 2025) & 
+                    (pd.to_datetime(df['Ngày']).dt.month == 7)]
+
+# Lọc đơn hàng đã hoàn thành hoặc đang giao
+heineken_order = heineken_order[heineken_order['Trạng thái'].isin(['đã xong', 'đang giao'])]
+
+# Tính doanh thu
+result = heineken_order['Thành tiền'].sum()
+   Lỗi: không
+🔥 10/1000 | 22.99s/câu | còn ~379.3 phút | có đáp án 9/10 | abstain 1 | lỗi 1 | timeout 0
+   [q_027f5441831d] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 8/2025
+filtered_data = SoSuaXe_T8_2025[SoSuaXe_T8_2025['Ngày'].str[:7] == '2025-08']
+
+# Kiểm tra xem Thợ Đoàn Bảo Phúc có trong danh sách thợ không
+if 'Đoàn Bảo Phúc' not in filtered_data['Thợ'].values:
+    result = __ABSTAIN__
+else:
+    # Lấy tất cả các đơn của Thợ Đoàn Bảo Phúc
+    worker_data = filtered_data[filtered_data['Thợ'] == 'Đoàn Bảo Phúc']
+    
+    # Tính doanh thu
+    total_revenue = worker_data['Tiền'].sum()
+    
+    # Tính hoa hồng
+    commission_rate = DanhSachTho[DanhSachTho['Họ tên'] == 'Đoàn Bảo Phúc']['Hoa hồng (%)'].values[0] / 100
+    commission_amount = total_revenue * commission_rate
+    
+    result = commission_amount
+   Lỗi: NameError: name '__ABSTAIN__' is not defined
+   [q_027f5441831d] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 8/2025
+filtered_data = SoSuaXe_T8_2025[SoSuaXe_T8_2025['Ngày'].str[:7] == '2025-08']
+
+# Kiểm tra xem Thợ Đoàn Bảo Phúc có trong danh sách thợ không
+if 'Đoàn Bảo Phúc' not in filtered_data['Thợ'].values:
+    result = '__ABSTAIN__'
+else:
+    # Lấy tất cả các đơn của Thợ Đoàn Bảo Phúc
+    worker_data = filtered_data[filtered_data['Thợ'] == 'Đoàn Bảo Phúc']
+    
+    # Tính doanh thu
+    total_revenue = worker_data['Tiền'].sum()
+    
+    # Tính hoa hồng
+    commission_rate = DanhSachTho[DanhSachTho['Họ tên'] == 'Đoàn Bảo Phúc']['Hoa hồng (%)'].values[0] / 100
+    commission_amount = total_revenue * commission_rate
+    
+    result = commission_amount
+   Lỗi: không
+   [q_02feb595d6b7] mã sinh ra:
+import pandas as pd
+
+# Load data
+df_sales = pd.read_csv('SoBanHang_T03_2026.csv')
+
+# Filter by date range and product
+filtered_df = df_sales[(df_sales['Thời gian'] >= '2026-03-01') & 
+                      (df_sales['Thời gian'] <= '2026-03-31') & 
+                      (df_sales['Hàng bán'] == 'Ống PVC Bình Minh D32 cây 4m')]
+
+# Calculate total quantity sold
+total_quantity_sold = filtered_df['SL bán'].sum()
+
+result = total_quantity_sold
+   Lỗi: không
+   [q_0329c9711c55] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng có trạng thái 'Huỷ' hoặc 'Trả hàng'
+filtered_orders = danh_sach_hoa_don[(danh_sach_hoa_don['Trạng thái đơn'] == 'Huỷ') | (danh_sach_hoa_don['Trạng thái đơn'] == 'Trả hàng')]
+
+# Lấy số lượng đơn hàng
+result = len(filtered_orders)
+   Lỗi: không
+   [q_033e37dde4d5] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho kỳ 2026-06-22 đến 2026-06-25
+start_date = '2026-06-22'
+end_date = '2026-06-25'
+
+# Lọc pos_don_hang để chỉ những đơn đã hoàn thành và không phải là loại huỷ/trả hàng
+filtered_orders = pos_don_hang[(pos_don_hang['NgayLap'] >= start_date) & 
+                               (pos_don_hang['NgayLap'] <= end_date) & 
+                               (pos_don_hang['TinhTrang'] == 'completed')]
+
+# Tính tổng số lượng gói bán
+total_packages_sold = filtered_orders['TongTienHang'].sum()
+
+# Kết quả
+result = total_packages_sold
+   Lỗi: không
+   [q_03622bae312b] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 6/2025
+data_june = SoBanHang_T06_2025[SoBanHang_T06_2025['Thời gian'].dt.month == 6]
+
+# Loại bỏ đơn huỷ/trả hàng
+valid_orders = data_june[data_june['Trạng thái xử lý'] != 'Huỷ']
+
+# Tính số đơn và số khách
+num_orders = valid_orders.shape[0]
+unique_customers = valid_orders['Khách hàng (tên)'].nunique()
+
+# Tính tỷ lệ khách có từ 4 đơn trở lên
+min_orders_per_customer = 4
+customers_with_min_orders = valid_orders.groupby('Khách hàng (tên)').size() >= min_orders_per_customer
+num_customers_with_min_orders = customers_with_min_orders.sum()
+percentage_customers = (num_customers_with_min_orders / unique_customers) * 100
+
+result = percentage_customers
+   Lỗi: AttributeError: Can only use .dt accessor with datetimelike values
+   [q_03622bae312b] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 6/2025
+data_june = SoBanHang_T06_2025[SoBanHang_T06_2025['Thời gian'].str.contains(r'/06/2025')]
+
+# Loại bỏ đơn huỷ/trả hàng
+valid_orders = data_june[data_june['Trạng thái xử lý'] != 'Huỷ']
+
+# Tính số đơn và số khách
+num_orders = valid_orders.shape[0]
+unique_customers = valid_orders['Khách hàng (tên)'].nunique()
+
+# Tính tỷ lệ khách có từ 4 đơn trở lên
+min_orders_per_customer = 4
+customers_with_min_orders = valid_orders.groupby('Khách hàng (tên)').size() >= min_orders_per_customer
+num_customers_with_min_orders = customers_with_min_orders.sum()
+percentage_customers = (num_customers_with_min_orders / unique_customers) * 100
+
+result = percentage_customers
+   Lỗi: không
+❌ q_0389b0c41da6: SyntaxError: expected 'else' after 'if' expression (<sandbox>, line 24)
+
+⏸️  Đã dừng bằng Ctrl+C. File output vẫn giữ các câu đã xong, chạy lại sẽ resume.
+📄 Dữ liệu : E:\workspace\zaloaic2026_nguyen\datamate_public_test
+📄 Câu hỏi : 1000 (từ questions.jsonl)
+🔧 Thiết bị: CUDA - NVIDIA GeForce RTX 3060
+🔧 Base model: unsloth/Qwen2.5-Coder-7B-Instruct-bnb-4bit
+🔧 LoRA adapter: E:\workspace\zaloaic2026_nguyen\datamate_lora_adapter\lora_adapter
+🔧 4-bit: True
+ℹ️  Không có Unsloth (ModuleNotFoundError) — bình thường trên Windows.
+    Dùng transformers+peft, vẫn chạy trên GPU.
+⏳ Đang nạp base model. Lần đầu phải TẢI ~4-5GB từ HuggingFace (có thể mất 5-20 phút tùy mạng), các lần sau lấy từ cache.
+    Muốn thấy thanh tiến trình tải: chạy `--prefetch` trước.
+    Cache: C:\Users\theba\.cache\huggingface\hub
+    VRAM: trống 11.0/12.0 GB (model cần ~6 GB)
+⏳ Đang gắn LoRA adapter...
+✅ Nạp model bằng transformers + peft.
+🚀 Bắt đầu suy luận: 1000 câu cần chạy
+
+   [q_008fdebb6ec9] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho kỳ 2025-11
+filtered_df = BanHang_T11_2025[BanHang_T11_2025['Ngày đặt hàng'].str[:7] == '2025-11']
+
+# Lọc đơn huỷ/trả hàng
+filtered_df = filtered_df[(filtered_df['Trạng thái đơn hàng'] == 'Đã hoàn thành') | (filtered_df['Trạng thái đơn hàng'] == 'Đang giao')]
+
+# Lọc sản phẩm trà
+tea_products = ['Trà chanh (L)', 'Trà xanh (L)', 'Trà hoa hồng (L)', 'Trà sen (L)', 'Trà trà (L)']
+filtered_df = filtered_df[filtered_df['Tên sản phẩm'].isin(tea_products)]
+
+# Tính tổng số ly trà bán được
+result = filtered_df.groupby('Tên sản phẩm')['Số lượng sản phẩm'].sum().idxmax()
+   Lỗi: không
+   [q_009187cd2960] mã sinh ra:
+import pandas as pd
+
+# Load data
+df_sales = pd.read_csv('SoBanHang_T05_2026.csv')
+df_calendar = pd.read_csv('calendar.csv')
+
+# Convert date columns to datetime
+df_sales['Thời gian'] = pd.to_datetime(df_sales['Thời gian'])
+df_calendar['date'] = pd.to_datetime(df_calendar['date'])
+
+# Filter sales for May 2026
+sales_may_2026 = df_sales[(df_sales['Thời gian'].dt.year == 2026) & (df_sales['Thời gian'].dt.month == 5)]
+
+# Filter products
+product_name = 'Ống PVC Bình Minh D50 cây 4m'
+sales_product = sales_may_2026[sales_may_2026['Hàng bán'] == product_name]
+
+# Calculate total quantity sold
+total_quantity_sold = sales_product['SL bán'].sum()
+
+result = total_quantity_sold
+   Lỗi: không
+   [q_00bf8df3ea0b] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng có trạng thái 'Huỷ' hoặc 'Trả hàng'
+filtered_df = BanHang_T3_2025[(BanHang_T3_2025['Trạng thái đơn hàng'] == 'Huỷ') | (BanHang_T3_2025['Trạng thái đơn hàng'] == 'Trả hàng')]
+
+# Lọc đơn hàng theo kỳ cần tính (2025-03-04)
+filtered_df = filtered_df[filtered_df['Ngày đặt hàng'].str[:10] == '2025-03-04']
+
+# Tính doanh thu
+doanh_thu = filtered_df['Tổng tiền'].sum()
+
+# Gán kết quả vào biến result
+result = doanh_thu
+   Lỗi: không
+   [q_00c4e24fa228] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu BanHang_2026_T06_2026 theo kỳ và loại bỏ các đơn huỷ/trả
+filtered_data = BanHang_2026_T06_2026[(BanHang_2026_T06_2026['Ngày'] >= '2026-06-01') & 
+                                      (BanHang_2026_T06_2026['Ngày'] <= '2026-06-30') &
+                                      (BanHang_2026_T06_2026['Ghi chú'].isna())]
+
+# Tính tổng doanh thu
+total_revenue = filtered_data['TT'].sum()
+
+result = total_revenue
+   Lỗi: không
+   [q_013b4ff35811] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng đã hoàn thành và nằm trong khoảng thời gian từ 2025-11-10 đến 2025-11-16
+filtered_orders = SoBanHang_T11_2025[(SoBanHang_T11_2025['Thời gian'] >= '2025-11-10') & 
+                                    (SoBanHang_T11_2025['Thời gian'] <= '2025-11-16') & 
+                                    (SoBanHang_T11_2025['Trạng thái xử lý'] == 'Đã hoàn thành')]
+
+# Tính tổng doanh thu
+total_revenue = filtered_orders['Amount'].sum()
+
+result = total_revenue
+   Lỗi: không
+   [q_014cdcc1da6e] mã sinh ra:
+# Lọc dữ liệu theo ngày và thời gian bán
+filtered_data = chi_tiet_hoa_don[(chi_tiet_hoa_don['Ngày giao dịch'] == '2025-08-26') & (chi_tiet_hoa_don['Giờ bán'].str.contains('ca chiều'))]
+
+# Tính tổng tiền bán
+total_sales = filtered_data['Thành tiền'].sum()
+
+# Lưu kết quả vào biến result
+result = total_sales
+   Lỗi: không
+   [q_01ac0fc9f2a2] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu từ bảng BanHang_PhieuThu
+df = pd.read_csv('BanHang_PhieuThu.csv')
+
+# Lọc ra các đơn không phải là huỷ/trả hàng và thuộc thời gian tuần qua
+current_date = pd.Timestamp.now()
+one_week_ago = current_date - pd.Timedelta(weeks=1)
+filtered_df = df[(df['Ma don'].str.startswith('ORD')) & (df['Ngày TT'] >= one_week_ago)]
+
+# Tính tổng tiền thu và số lượng đơn
+total_revenue = filtered_df['Tiền thu'].sum()
+number_of_orders = len(filtered_df)
+
+# Tính trung bình mỗi đơn
+average_revenue_per_order = total_revenue / number_of_orders if number_of_orders > 0 else 0
+
+# Lưu kết quả vào biến result
+result = average_revenue_per_order
+   Lỗi: TypeError: '>=' not supported between instances of 'str' and 'Timestamp'
+   [q_01ac0fc9f2a2] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu từ bảng BanHang_PhieuThu
+df = pd.read_csv('BanHang_PhieuThu.csv')
+
+# Chuyển đổi cột 'Ngày TT' thành datetime
+df['Ngày TT'] = pd.to_datetime(df['Ngày TT'])
+
+# Lọc ra các đơn không phải là huỷ/trả hàng và thuộc thời gian tuần qua
+current_date = pd.Timestamp.now()
+one_week_ago = current_date - pd.Timedelta(weeks=1)
+filtered_df = df[(df['Ma don'].str.startswith('ORD')) & (df['Ngày TT'] >= one_week_ago)]
+
+# Tính tổng tiền thu và số lượng đơn
+total_revenue = filtered_df['Tiền thu'].sum()
+number_of_orders = len(filtered_df)
+
+# Tính trung bình mỗi đơn
+average_revenue_per_order = total_revenue / number_of_orders if number_of_orders > 0 else 0
+
+# Lưu kết quả vào biến result
+result = average_revenue_per_order
+   Lỗi: không
+   [q_01ba91ff94c6] mã sinh ra:
+import pandas as pd
+
+# Lấy dữ liệu từ bảng ChiTietHoaDon_1
+df = tables['ChiTietHoaDon_1']
+
+# Chuyển đổi cột Giờ bán thành datetime
+df['Giờ bán'] = pd.to_datetime(df['Giờ bán'])
+
+# Lọc ra những đơn đã hoàn thành (TT đơn == 'đã xong')
+completed_orders = df[df['TT đơn'] == 'đã xong']
+
+# Tính tổng số lượng từng món hàng
+item_sales = completed_orders.groupby('Tên hàng')['SL lẻ'].sum().reset_index()
+
+# Sắp xếp theo số lượng giảm dần và lấy top 5
+top_5_items = item_sales.sort_values(by='SL lẻ', ascending=False).head(5)
+
+# Lấy tên của 5 món hàng bán chạy nhất
+result = top_5_items['Tên hàng'].tolist()
+   Lỗi: không
+   [q_01d1099489a0] mã sinh ra:
+import pandas as pd
+
+# Load data
+df = pd.read_json('path_to_your_data.json')
+
+# Filter data for March 2025 and March 2024
+df_march_2025 = df[(df['Ngày đặt hàng'].str[:7] == '2025-03')]
+df_march_2024 = df[(df['Ngày đặt hàng'].str[:7] == '2024-03')]
+
+# Calculate total revenue for each month
+total_revenue_march_2025 = df_march_2025['Tổng tiền'].sum()
+total_revenue_march_2024 = df_march_2024['Tổng tiền'].sum()
+
+# Calculate percentage change
+percentage_change = ((total_revenue_march_2025 - total_revenue_march_2024) / total_revenue_march_2024) * 100
+
+# Format result
+result = f"{percentage_change:.2f}%"
+   Lỗi: FileNotFoundError: [Errno 2] No such file or directory: 'path_to_your_data.json'
+   [q_01d1099489a0] mã sinh ra:
+import pandas as pd
+
+# Load data from BanHang_Thang03_2025 table
+df_march_2025 = pd.DataFrame([
+    {"Mã đơn hàng": "ORD004944", "Ngày đặt hàng": "2025-03-01", "Trạng thái đơn hàng": "ok", "Tên khách hàng": "Khách lẻ", "Tên sản phẩm": "Enterogermina 2 tỷ/5ml hộp 20 ống", "Số lượng sản phẩm": 1, "Giá sản phẩm": 194000, "Tổng tiền": 194000, "Đơn vị tính": "hộp"},
+    # Add more rows as needed
+])
+
+# Load data from BanHang_Thang03_2024 table
+df_march_2024 = pd.DataFrame([
+    {"Mã đơn hàng": "ORD002634", "Ngày đặt hàng": "2024-03-01", "Trạng thái đơn hàng": "ok", "Tên khách hàng": "Diệp Hoa Tâm", "Tên sản phẩm": "Fugacar 500mg hộp 1 viên", "Số lượng sản phẩm": 1, "Giá sản phẩm": 22000, "Tổng tiền": 22000, "Đơn vị tính
+   Lỗi: SyntaxError: unterminated string literal (detected at line 10) (<sandbox>, line 10)
+❌ q_01d1099489a0: SyntaxError: unterminated string literal (detected at line 10) (<sandbox>, line 10)
+   [q_01d1fc600b26] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng Heineken 330ml trong tháng 7 năm 2025
+heineken_order = df[(df['Tên hàng hóa'] == 'Heineken 330ml') & 
+                    (pd.to_datetime(df['Ngày']).dt.year == 2025) & 
+                    (pd.to_datetime(df['Ngày']).dt.month == 7)]
+
+# Lọc đơn hàng đã hoàn thành hoặc đang giao
+heineken_order = heineken_order[heineken_order['Trạng thái'].isin(['đã xong', 'đang giao'])]
+
+# Tính doanh thu
+result = heineken_order['Thành tiền'].sum()
+   Lỗi: không
+🔥 10/1000 | 25.22s/câu | còn ~416.1 phút | có đáp án 9/10 | abstain 1 | lỗi 1 | timeout 0
+   [q_027f5441831d] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 8/2025
+filtered_data = SoSuaXe_T8_2025[SoSuaXe_T8_2025['Ngày'].str[:7] == '2025-08']
+
+# Kiểm tra xem Thợ Đoàn Bảo Phúc có trong danh sách thợ không
+if 'Đoàn Bảo Phúc' not in filtered_data['Thợ'].values:
+    result = __ABSTAIN__
+else:
+    # Lấy tất cả các đơn của Thợ Đoàn Bảo Phúc
+    worker_data = filtered_data[filtered_data['Thợ'] == 'Đoàn Bảo Phúc']
+    
+    # Tính doanh thu
+    total_revenue = worker_data['Tiền'].sum()
+    
+    # Tính hoa hồng
+    commission_rate = DanhSachTho[DanhSachTho['Họ tên'] == 'Đoàn Bảo Phúc']['Hoa hồng (%)'].values[0] / 100
+    commission_amount = total_revenue * commission_rate
+    
+    result = commission_amount
+   Lỗi: NameError: name '__ABSTAIN__' is not defined
+   [q_027f5441831d] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 8/2025
+filtered_data = SoSuaXe_T8_2025[SoSuaXe_T8_2025['Ngày'].str[:7] == '2025-08']
+
+# Kiểm tra xem Thợ Đoàn Bảo Phúc có trong danh sách thợ không
+if 'Đoàn Bảo Phúc' not in filtered_data['Thợ'].values:
+    result = '__ABSTAIN__'
+else:
+    # Lấy tất cả các đơn của Thợ Đoàn Bảo Phúc
+    worker_data = filtered_data[filtered_data['Thợ'] == 'Đoàn Bảo Phúc']
+    
+    # Tính doanh thu
+    total_revenue = worker_data['Tiền'].sum()
+    
+    # Tính hoa hồng
+    commission_rate = DanhSachTho[DanhSachTho['Họ tên'] == 'Đoàn Bảo Phúc']['Hoa hồng (%)'].values[0] / 100
+    commission_amount = total_revenue * commission_rate
+    
+    result = commission_amount
+   Lỗi: không
+   [q_02feb595d6b7] mã sinh ra:
+import pandas as pd
+
+# Load data
+df_sales = pd.read_csv('SoBanHang_T03_2026.csv')
+
+# Filter by date range and product
+filtered_df = df_sales[(df_sales['Thời gian'] >= '2026-03-01') & 
+                      (df_sales['Thời gian'] <= '2026-03-31') & 
+                      (df_sales['Hàng bán'] == 'Ống PVC Bình Minh D32 cây 4m')]
+
+# Calculate total quantity sold
+total_quantity_sold = filtered_df['SL bán'].sum()
+
+result = total_quantity_sold
+   Lỗi: không
+   [q_0329c9711c55] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng có trạng thái 'Huỷ' hoặc 'Trả hàng'
+filtered_orders = danh_sach_hoa_don[(danh_sach_hoa_don['Trạng thái đơn'] == 'Huỷ') | (danh_sach_hoa_don['Trạng thái đơn'] == 'Trả hàng')]
+
+# Lấy số lượng đơn hàng
+result = len(filtered_orders)
+   Lỗi: không
+   [q_033e37dde4d5] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho kỳ 2026-06-22 đến 2026-06-25
+start_date = '2026-06-22'
+end_date = '2026-06-25'
+
+# Lọc pos_don_hang để chỉ những đơn đã hoàn thành và không phải là loại huỷ/trả hàng
+filtered_orders = pos_don_hang[(pos_don_hang['NgayLap'] >= start_date) & 
+                               (pos_don_hang['NgayLap'] <= end_date) & 
+                               (pos_don_hang['TinhTrang'] == 'completed')]
+
+# Tính tổng số lượng gói bán
+total_packages_sold = filtered_orders['TongTienHang'].sum()
+
+# Kết quả
+result = total_packages_sold
+   Lỗi: không
+   [q_03622bae312b] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 6/2025
+data_june = SoBanHang_T06_2025[SoBanHang_T06_2025['Thời gian'].dt.month == 6]
+
+# Loại bỏ đơn huỷ/trả hàng
+valid_orders = data_june[data_june['Trạng thái xử lý'] != 'Huỷ']
+
+# Tính số đơn và số khách
+num_orders = valid_orders.shape[0]
+unique_customers = valid_orders['Khách hàng (tên)'].nunique()
+
+# Tính tỷ lệ khách có từ 4 đơn trở lên
+min_orders_per_customer = 4
+customers_with_min_orders = valid_orders.groupby('Khách hàng (tên)').size() >= min_orders_per_customer
+num_customers_with_min_orders = customers_with_min_orders.sum()
+percentage_customers = (num_customers_with_min_orders / unique_customers) * 100
+
+result = percentage_customers
+   Lỗi: AttributeError: Can only use .dt accessor with datetimelike values
+   [q_03622bae312b] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 6/2025
+data_june = SoBanHang_T06_2025[SoBanHang_T06_2025['Thời gian'].str.contains(r'/06/2025')]
+
+# Loại bỏ đơn huỷ/trả hàng
+valid_orders = data_june[data_june['Trạng thái xử lý'] != 'Huỷ']
+
+# Tính số đơn và số khách
+num_orders = valid_orders.shape[0]
+unique_customers = valid_orders['Khách hàng (tên)'].nunique()
+
+# Tính tỷ lệ khách có từ 4 đơn trở lên
+min_orders_per_customer = 4
+customers_with_min_orders = valid_orders.groupby('Khách hàng (tên)').size() >= min_orders_per_customer
+num_customers_with_min_orders = customers_with_min_orders.sum()
+percentage_customers = (num_customers_with_min_orders / unique_customers) * 100
+
+result = percentage_customers
+   Lỗi: không
+❌ q_0389b0c41da6: SyntaxError: expected 'else' after 'if' expression (<sandbox>, line 24)
+🔥 20/1000 | 25.51s/câu | còn ~416.7 phút | có đáp án 16/20 | abstain 4 | lỗi 2 | timeout 0
+
+⏸️  Đã dừng bằng Ctrl+C. File output vẫn giữ các câu đã xong, chạy lại sẽ resume.
+📄 Dữ liệu : E:\workspace\zaloaic2026_nguyen\datamate_public_test
+📄 Câu hỏi : 1000 (từ questions.jsonl)
+🔧 Thiết bị: CUDA - NVIDIA GeForce RTX 3060
+🔧 Base model: unsloth/Qwen2.5-Coder-7B-Instruct-bnb-4bit
+🔧 LoRA adapter: E:\workspace\zaloaic2026_nguyen\datamate_lora_adapter\lora_adapter
+🔧 4-bit: True
+ℹ️  Không có Unsloth (ModuleNotFoundError) — bình thường trên Windows.
+    Dùng transformers+peft, vẫn chạy trên GPU.
+⏳ Đang nạp base model. Lần đầu phải TẢI ~4-5GB từ HuggingFace (có thể mất 5-20 phút tùy mạng), các lần sau lấy từ cache.
+    Muốn thấy thanh tiến trình tải: chạy `--prefetch` trước.
+    Cache: C:\Users\theba\.cache\huggingface\hub
+    VRAM: trống 11.0/12.0 GB (model cần ~6 GB)
+⏳ Đang gắn LoRA adapter...
+✅ Nạp model bằng transformers + peft.
+🚀 Bắt đầu suy luận: 1000 câu cần chạy
+
+   [q_008fdebb6ec9] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu theo kỳ và trạng thái đơn hàng
+filtered_df = BanHang_T11_2025[(pd.to_datetime(BanHang_T11_2025['Ngày đặt hàng']).dt.strftime('%Y-%m') == '2025-11') & 
+                               (BanHang_T11_2025['Trạng thái đơn hàng'].isin(['Đã hoàn thành', 'Đang giao']))]
+
+# Lọc dữ liệu chỉ chứa mặt hàng trà
+tea_products = filtered_df[filtered_df['Tên sản phẩm'].str.contains('Trà', na=False)]
+
+# Tính tổng số lượng ly trà bán được
+result = tea_products.groupby('Tên sản phẩm')['Số lượng sản phẩm'].sum().idxmax()
+   Lỗi: không
+   [q_009187cd2960] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho kỳ 2026-05-01 đến 2026-05-31
+filtered_df = SoBanHang_T05_2026[(SoBanHang_T05_2026['Thời gian'] >= '2026-05-01') & (SoBanHang_T05_2026['Thời gian'] <= '2026-05-31')]
+
+# Lọc sản phẩm cụ thể
+product_name = 'Ống PVC Bình Minh D50 cây 4m'
+specific_product_df = filtered_df[filtered_df['Hàng bán'].str.contains(product_name)]
+
+# Tính tổng số lượng bán
+total_quantity_sold = specific_product_df['SL bán'].sum()
+
+result = total_quantity_sold
+   Lỗi: không
+   [q_00bf8df3ea0b] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng theo ngày đặt và trạng thái
+filtered_df = BanHang_T3_2025[(pd.to_datetime(BanHang_T3_2025['Ngày đặt hàng']).dt.date == pd.to_datetime('2025-03-04').date()) & 
+                             (BanHang_T3_2025['Trạng thái đơn hàng'].isin(['Huỷ', 'Trả hàng']))]
+
+# Tính doanh thu
+result = filtered_df['Tổng tiền'].sum()
+   Lỗi: không
+   [q_00c4e24fa228] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu BanHang_2026_T06_2026 theo kỳ và loại bỏ các đơn huỷ/trả hàng
+filtered_data = BanHang_2026_T06_2026[(BanHang_2026_T06_2026['Ngày'] >= '2026-06-01') & 
+                                      (BanHang_2026_T06_2026['Ngày'] <= '2026-06-30')]
+
+# Tính tổng doanh thu
+total_revenue = filtered_data['TT'].sum()
+
+result = total_revenue
+   Lỗi: không
+   [q_013b4ff35811] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng đã hoàn thành và không phải loại huỷ/trả
+don_hang = SoBanHang_T11_2025[SoBanHang_T11_2025['Trạng thái xử lý'] == 'Đã hoàn thành']
+
+# Lọc đơn hàng trong khoảng thời gian từ 2025-11-10 đến 2025-11-16
+don_hang = don_hang[(don_hang['Thời gian'] >= '2025-11-10') & (don_hang['Thời gian'] <= '2025-11-16')]
+
+# Tính tổng doanh thu
+doanh_thu_tuan_nay = don_hang['Amount'].sum()
+
+result = doanh_thu_tuan_nay
+   Lỗi: không
+   [q_014cdcc1da6e] mã sinh ra:
+# Lọc dữ liệu theo ngày và thời gian bán
+filtered_data = chi_tiet_hoa_don[(chi_tiet_hoa_don['Ngày giao dịch'] == '2025-08-26') & (chi_tiet_hoa_don['Giờ bán'].str.contains('ca chiều'))]
+
+# Tính tổng tiền bán
+total_sales = filtered_data['Thành tiền'].sum()
+
+# Lưu kết quả vào biến result
+result = total_sales
+   Lỗi: không
+   [q_01ac0fc9f2a2] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu từ bảng BanHang_PhieuThu
+df = pd.read_csv('BanHang_PhieuThu.csv')
+
+# Lọc ra các đơn không phải là huỷ/trả hàng và thuộc thời gian tuần qua
+current_date = pd.Timestamp.now()
+one_week_ago = current_date - pd.Timedelta(weeks=1)
+filtered_df = df[(df['Ma don'].str.startswith('ORD')) & (df['Ngày TT'] >= one_week_ago)]
+
+# Tính tổng tiền thu và số lượng đơn
+total_revenue = filtered_df['Tiền thu'].sum()
+number_of_orders = len(filtered_df)
+
+# Tính trung bình mỗi đơn
+average_revenue_per_order = total_revenue / number_of_orders if number_of_orders > 0 else 0
+
+# Lưu kết quả vào biến result
+result = average_revenue_per_order
+   Lỗi: TypeError: '>=' not supported between instances of 'str' and 'Timestamp'
+   [q_01ac0fc9f2a2] mã sinh ra:
+import pandas as pd
+
+# Đọc dữ liệu từ bảng BanHang_PhieuThu
+df = pd.read_csv('BanHang_PhieuThu.csv')
+
+# Chuyển đổi cột 'Ngày TT' thành datetime
+df['Ngày TT'] = pd.to_datetime(df['Ngày TT'])
+
+# Lọc ra các đơn không phải là huỷ/trả hàng và thuộc thời gian tuần qua
+current_date = pd.Timestamp.now()
+one_week_ago = current_date - pd.Timedelta(weeks=1)
+filtered_df = df[(df['Ma don'].str.startswith('ORD')) & (df['Ngày TT'] >= one_week_ago)]
+
+# Tính tổng tiền thu và số lượng đơn
+total_revenue = filtered_df['Tiền thu'].sum()
+number_of_orders = len(filtered_df)
+
+# Tính trung bình mỗi đơn
+average_revenue_per_order = total_revenue / number_of_orders if number_of_orders > 0 else 0
+
+# Lưu kết quả vào biến result
+result = average_revenue_per_order
+   Lỗi: không
+   [q_01ba91ff94c6] mã sinh ra:
+import pandas as pd
+
+# Lấy dữ liệu từ bảng ChiTietHoaDon_1
+df = tables['ChiTietHoaDon_1']
+
+# Chuyển đổi cột Giờ bán thành datetime
+df['Giờ bán'] = pd.to_datetime(df['Giờ bán'])
+
+# Lọc ra những đơn đã hoàn thành (TT đơn == 'đã xong')
+completed_orders = df[df['TT đơn'] == 'đã xong']
+
+# Tính tổng số lượng từng món hàng
+item_sales = completed_orders.groupby('Tên hàng')['SL lẻ'].sum().reset_index()
+
+# Sắp xếp theo số lượng giảm dần và lấy top 5
+top_5_items = item_sales.sort_values(by='SL lẻ', ascending=False).head(5)
+
+# Lấy tên của 5 món hàng bán chạy nhất
+result = top_5_items['Tên hàng'].tolist()
+   Lỗi: không
+   [q_01d1099489a0] mã sinh ra:
+import pandas as pd
+
+# Load data
+df_current = pd.read_json('BanHang_Thang03_2025.json')
+df_previous = pd.read_json('BanHang_Thang02_2025.json')
+
+# Filter by date range and status
+current_period = df_current[(df_current['Ngày đặt hàng'] >= '2025-03-01') & 
+                            (df_current['Ngày đặt hàng'] <= '2025-03-18') & 
+                            (df_current['Trạng thái đơn hàng'] == 'ok')]
+previous_period = df_previous[(df_previous['Ngày đặt hàng'] >= '2025-02-01') & 
+                             (df_previous['Ngày đặt hàng'] <= '2025-02-28') & 
+                             (df_previous['Trạng thái đơn hàng'] == 'ok')]
+
+# Calculate total revenue for each period
+total_revenue_current = current_period['Tổng tiền'].sum()
+total_revenue_previous = previous_period['Tổng tiền'].sum()
+
+# Calculate percentage change
+percentage_change = ((total_revenue_current - total_revenue_previous) / total_revenue_previous) * 100
+
+result = percentage_change
+   Lỗi: FileNotFoundError: [Errno 2] No such file or directory: 'BanHang_Thang03_2025.json'
+   [q_01d1099489a0] mã sinh ra:
+import pandas as pd
+
+# Load data
+df_current = tables['BanHang_Thang03_2025']
+df_previous = tables['BanHang_Thang02_2025']
+
+# Filter by date range and status
+current_period = df_current[(df_current['Ngày đặt hàng'] >= '2025-03-01') & 
+                            (df_current['Ngày đặt hàng'] <= '2025-03-18') & 
+                            (df_current['Trạng thái đơn hàng'] == 'ok')]
+previous_period = df_previous[(df_previous['Ngày đặt hàng'] >= '2025-02-01') & 
+                             (df_previous['Ngày đặt hàng'] <= '2025-02-28') & 
+                             (df_previous['Trạng thái đơn hàng'] == 'ok')]
+
+# Calculate total revenue for each period
+total_revenue_current = current_period['Tổng tiền'].sum()
+total_revenue_previous = previous_period['Tổng tiền'].sum()
+
+# Calculate percentage change
+percentage_change = ((total_revenue_current - total_revenue_previous) / total_revenue_previous) * 100
+
+result = percentage_change
+   Lỗi: không
+   [q_01d1fc600b26] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng có trạng thái 'Huỷ' hoặc 'Trả hàng'
+filtered_orders = So_chi_tiet_ban_hang[So_chi_tiet_ban_hang['Trạng thái'].isin(['Huỷ', 'Trả hàng'])]
+
+# Lọc đơn hàng có ngày đặt trong tháng 7 năm 2025
+filtered_orders = filtered_orders[filtered_orders['Ngày'].str[:7] == '2025-07']
+
+# Lọc sản phẩm Bia Heineken 330ml
+heineken_order = filtered_orders[filtered_orders['Tên hàng hóa'] == 'Bia Heineken 330ml']
+
+# Tính doanh thu
+result = heineken_order['Thành tiền'].sum()
+   Lỗi: không
+🔥 10/1000 | 23.64s/câu | còn ~390.1 phút | có đáp án 10/10 | abstain 0 | lỗi 0 | timeout 0
+   [q_027f5441831d] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 8/2025
+df_filtered = SoSuaXe_T8_2025[SoSuaXe_T8_2025['Ngày'].str[:7] == '2025-08']
+
+# Kiểm tra nếu có thợ Đoàn Bảo Phúc
+doan_bao_phuc = 'Đoàn Bảo Phúc'
+if doan_bao_phuc in df_filtered['Thợ'].values:
+    # Lấy tiền của thợ Đoàn Bảo Phúc
+    result = df_filtered[df_filtered['Thợ'] == doan_bao_phuc]['Tiền'].sum()
+else:
+    result = __UNANSWERABLE__
+   Lỗi: NameError: name '__UNANSWERABLE__' is not defined
+   [q_027f5441831d] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho tháng 8/2025
+df_filtered = SoSuaXe_T8_2025[SoSuaXe_T8_2025['Ngày'].str[:7] == '2025-08']
+
+# Kiểm tra nếu có thợ Đoàn Bảo Phúc
+doan_bao_phuc = 'Đoàn Bảo Phúc'
+if doan_bao_phuc in df_filtered['Thợ'].values:
+    # Lấy tiền của thợ Đoàn Bảo Phúc
+    result = df_filtered[df_filtered['Thợ'] == doan_bao_phuc]['Tiền'].sum()
+else:
+    result = '__UNANSWERABLE__'
+   Lỗi: không
+   [q_02feb595d6b7] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho kỳ 2026-03-01 → 2026-03-31
+filtered_df = SoBanHang_T03_2026[(SoBanHang_T03_2026['Thời gian'] >= '2026-03-01') & (SoBanHang_T03_2026['Thời gian'] <= '2026-03-31')]
+
+# Lọc sản phẩm 'Ống PVC Bình Minh D32 cây 4m'
+product_name = 'Ống PVC Bình Minh D32 cây 4m'
+result = filtered_df[filtered_df['Hàng bán'] == product_name]['SL bán'].sum()
+
+# Kiểm tra nếu có đơn huỷ/trả
+if '__UNANSWERABLE__' in result:
+    result = '__UNANSWERABLE__'
+
+print(result)
+   Lỗi: TypeError: argument of type 'numpy.float64' is not iterable
+   [q_02feb595d6b7] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho kỳ 2026-03-01 → 2026-03-31
+filtered_df = SoBanHang_T03_2026[(SoBanHang_T03_2026['Thời gian'] >= '2026-03-01') & (SoBanHang_T03_2026['Thời gian'] <= '2026-03-31')]
+
+# Lọc sản phẩm 'Ống PVC Bình Minh D32 cây 4m'
+product_name = 'Ống PVC Bình Minh D32 cây 4m'
+result = filtered_df[filtered_df['Hàng bán'] == product_name]['SL bán'].sum()
+
+# Kiểm tra nếu có đơn huỷ/trả
+if pd.isna(result):
+    result = '__UNANSWERABLE__'
+
+print(result)
+   Lỗi: không
+   [q_0329c9711c55] mã sinh ra:
+import pandas as pd
+
+# Lọc đơn hàng hoàn thành và đang giao
+completed_orders = danh_sach_hoa_don[(danh_sach_hoa_don['Trạng thái đơn'] == 'Hoàn thành') | (danh_sach_hoa_don['Trạng thái đơn'] == 'Đang giao')]
+# Lấy số lượng đơn hàng
+result = len(completed_orders)
+   Lỗi: không
+   [q_033e37dde4d5] mã sinh ra:
+import pandas as pd
+
+# Lọc dữ liệu cho kỳ 2026-06-22 đến 2026-06-25
+start_date = '2026-06-22'
+end_date = '2026-06-25'
+
+# Lọc pos_don_hang để chỉ những đơn đã hoàn thành và không phải là loại huỷ/trả hàng
+filtered_orders = pos_don_hang[(pos_don_hang['NgayLap'] >= start_date) & 
+                               (pos_don_hang['NgayLap'] <= end_date) & 
+                               (pos_don_hang['TinhTrang'] == 'completed')]
+
+# Tính tổng số lượng gói bán
+total_packages_sold = filtered_orders['TongTienHang'].sum()
+
+# Kết quả
+result = total_packages_sold
+   Lỗi: không
+   [q_03622bae312b] mã sinh ra:
+# Lọc dữ liệu cho tháng 6/2025
+df_june = df[(df['Thời gian'] >= '2025-06-01') & (df['Thời gian'] < '2025-07-01')]
+
+# Loại bỏ đơn huỷ/trả hàng
+df_june = df_june[df_june['Trạng thái xử lý'] != 'Huỷ']
+
+# Tính số đơn của mỗi khách hàng
+customer_orders = df_june.groupby('Khách hàng (tên)').size()
+
+# Lọc ra khách hàng có từ 4 đơn trở lên
+high_order_customers = customer_orders[customer_orders >= 4]
+
+# Tính phần trăm khách hàng có từ 4 đơn trở lên
+percentage_high_order_customers = (len(high_order_customers) / len(customer_orders)) * 100
+
+# Chuyển đổi sang chuỗi và gán vào result
+result = str(percentage_high_order_customers)
+   Lỗi: ZeroDivisionError: division by zero
+   [q_03622bae312b] mã sinh ra:
+# Lọc dữ liệu cho tháng 6/2025
+df_june = df[(df['Thời gian'] >= '2025-06-01') & (df['Thời gian'] < '2025-07-01')]
+
+# Loại bỏ đơn huỷ/trả hàng
+df_june = df_june[df_june['Trạng thái xử lý'] != 'Huỷ']
+
+# Tính số đơn của mỗi khách hàng
+customer_orders = df_june.groupby('Khách hàng (tên)').size()
+
+# Lọc ra khách hàng có từ 4 đơn trở lên
+high_order_customers = customer_orders[customer_orders >= 4]
+
+# Kiểm tra xem có khách hàng nào thỏa mãn không
+if not high_order_customers.empty:
+    # Tính phần trăm khách hàng có từ 4 đơn trở lên
+    percentage_high_order_customers = (len(high_order_customers) / len(customer_orders)) * 100
+else:
+    percentage_high_order_customers = 0
+
+# Chuyển đổi sang chuỗi và gán vào result
+result = str(percentage_high_order_customers)
+   Lỗi: không
+❌ q_0389b0c41da6: NameError: name 'pos_don' is not defined
+❌ q_040d437fdf09: ValueError: No objects to concatenate
+🔥 20/1000 | 24.30s/câu | còn ~396.9 phút | có đáp án 17/20 | abstain 3 | lỗi 2 | timeout 0
+   ⚠️  q_04e55a8f8c0c: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_04e55a8f8c0c: Các giá trị sau KHÔNG tồn tại trong dữ liệu: BanHang_T. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_052834325528: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_052834325528: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Month, ThoiGianLap. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_0537f6e4f5ab: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_0537f6e4f5ab: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Month, Total Sales. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_05421814d0e3: ValueError: You are trying to merge on str and int64 columns for key 'Tên sản phẩm'. If you wish to proceed you should use pd.concat
+   ⚠️  q_0641a621b596: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_0641a621b596: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon, NgayLap, TinhTrang. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 30/1000 | 27.00s/câu | còn ~436.5 phút | có đáp án 21/30 | abstain 9 | lỗi 7 | timeout 0
+❌ q_0878814b6a76: SyntaxError: '(' was never closed (<sandbox>, line 25)
+🔥 40/1000 | 26.28s/câu | còn ~420.6 phút | có đáp án 28/40 | abstain 12 | lỗi 8 | timeout 0
+❌ q_099a18d1ed60: NameError: name '__UNANSWERABLE__' is not defined
+❌ q_09e3efc66c68: AttributeError: 'Series' object has no attribute 'month'
+❌ q_0b78b53675c1: SyntaxError: unterminated string literal (detected at line 18) (<sandbox>, line 18)
+❌ q_0b854610073b: KeyError: 'Trừ vào (STT sổ bán)'
+🔥 50/1000 | 26.43s/câu | còn ~418.4 phút | có đáp án 34/50 | abstain 16 | lỗi 12 | timeout 0
+   ⚠️  q_0ca19cd317cb: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_0ca19cd317cb: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_0cb6a1a6f1ef: KeyError: 'Ngày HĐ'
+❌ q_0d23cc65cc7a: TypeError: str.replace() takes no keyword arguments
+🔥 60/1000 | 25.98s/câu | còn ~407.0 phút | có đáp án 40/60 | abstain 20 | lỗi 15 | timeout 0
+❌ q_0ea6fdb19b86: SyntaxError: unterminated string literal (detected at line 18) (<sandbox>, line 18)
+❌ q_0ed1ebc4fe4d: SyntaxError: closing parenthesis ')' does not match opening parenthesis '[' (<sandbox>, line 9)
+❌ q_1019063a351e: TypeError: unsupported operand type(s) for &: 'str' and 'float'
+🔥 70/1000 | 25.41s/câu | còn ~393.9 phút | có đáp án 47/70 | abstain 23 | lỗi 18 | timeout 0
+❌ q_10a0c4fec3d2: SyntaxError: '(' was never closed (<sandbox>, line 11)
+❌ q_113d86c3eb6a: no_result (stdout='')
+❌ q_1205eaa6091a: Các giá trị sau KHÔNG tồn tại trong dữ liệu: grande 51L3-168.55, airblade 50F5-227.38, thay bugi + bdtq + nhớt hãng, dây cu roa + nhớt láp + nhớt Honda, a Đạt. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_121c6959016d: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_121c6959016d: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã người mua, Tổng tiền hàng, Giờ bán. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 80/1000 | 25.21s/câu | còn ~386.5 phút | có đáp án 53/80 | abstain 27 | lỗi 22 | timeout 0
+❌ q_1341cdede99a: URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>
+❌ q_1473ee8c46fd: SyntaxError: unterminated string literal (detected at line 15) (<sandbox>, line 15)
+🔥 90/1000 | 24.76s/câu | còn ~375.6 phút | có đáp án 60/90 | abstain 30 | lỗi 24 | timeout 0
+❌ q_15dd37187b0d: SyntaxError: unterminated string literal (detected at line 27) (<sandbox>, line 27)
+❌ q_16852a1ac5f7: KeyError: 'Nợ'
+❌ q_169bfdcce0ae: IndexingError: Unalignable boolean Series provided as indexer (index of the boolean Series and of the indexed object do not match).
+🔥 100/1000 | 25.04s/câu | còn ~375.6 phút | có đáp án 67/100 | abstain 33 | lỗi 27 | timeout 0
+❌ q_18d3b12b578f: SyntaxError: '(' was never closed (<sandbox>, line 29)
+❌ q_1a312c2f71ac: SyntaxError: unterminated string literal (detected at line 23) (<sandbox>, line 23)
+❌ q_1a5c000274ee: no_result (stdout='')
+🔥 110/1000 | 24.47s/câu | còn ~362.9 phút | có đáp án 74/110 | abstain 36 | lỗi 30 | timeout 0
+❌ q_1c2ff6b4820f: NameError: name 'don' is not defined
+❌ q_1c7bef344864: KeyError: 'BanHang_25_1_2025'
+   ⚠️  q_1d7f8fb3a5df: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_1d7f8fb3a5df: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Tên KH, Tên bé, Tên KH, Tên bé. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_1e1b499d3c87: KeyError: 'ChiTietHoaDon_1'
+🔥 120/1000 | 24.40s/câu | còn ~357.9 phút | có đáp án 80/120 | abstain 40 | lỗi 34 | timeout 0
+❌ q_210d0cfc81e5: SyntaxError: unterminated string literal (detected at line 20) (<sandbox>, line 20)
+🔥 130/1000 | 24.38s/câu | còn ~353.5 phút | có đáp án 87/130 | abstain 43 | lỗi 35 | timeout 0
+❌ q_21c1f1a2bf98: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_220b5f8bc174: SyntaxError: '[' was never closed (<sandbox>, line 22)
+❌ q_22a7258b62bf: SyntaxError: '(' was never closed (<sandbox>, line 19)
+❌ q_24a84f354ed0: no_result (stdout='')
+🔥 140/1000 | 24.76s/câu | còn ~354.9 phút | có đáp án 92/140 | abstain 48 | lỗi 39 | timeout 0
+❌ q_27b5996a5f4c: KeyError: 'Trạng thái'
+🔥 150/1000 | 24.36s/câu | còn ~345.1 phút | có đáp án 100/150 | abstain 50 | lỗi 40 | timeout 0
+   ⚠️  q_29efb04a938b: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_29efb04a938b: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaPhieuThu. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_29f0281751c0: SyntaxError: '{' was never closed (<sandbox>, line 3)
+❌ q_2c8d4481ca57: NameError: name '__UNANSWERABLE__' is not defined
+❌ q_2db4f43d56bd: KeyError: 'Giờ bán'
+🔥 160/1000 | 24.39s/câu | còn ~341.4 phút | có đáp án 106/160 | abstain 54 | lỗi 44 | timeout 0
+❌ q_30f08ce67f3e: KeyError: 'Trạng thái'
+🔥 170/1000 | 24.07s/câu | còn ~333.0 phút | có đáp án 114/170 | abstain 56 | lỗi 45 | timeout 0
+❌ q_32201ceda2ad: KeyError: 'Ngày HĐ'
+   ⚠️  q_32e315da86e6: code hardcode giá trị không có trong dữ liệu -> sửa
+🔥 180/1000 | 23.63s/câu | còn ~322.9 phút | có đáp án 122/180 | abstain 58 | lỗi 46 | timeout 0
+❌ q_32ee3f6d23b0: SyntaxError: unterminated string literal (detected at line 15) (<sandbox>, line 15)
+❌ q_338d0179f66d: SyntaxError: '(' was never closed (<sandbox>, line 22)
+❌ q_344459d9755f: SyntaxError: invalid syntax (<sandbox>, line 19)
+🔥 190/1000 | 23.56s/câu | còn ~318.0 phút | có đáp án 129/190 | abstain 61 | lỗi 49 | timeout 0
+❌ q_36f612a6b301: KeyError: 'Trạng thái'
+   ⚠️  q_37305e6af527: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_37305e6af527: Các giá trị sau KHÔNG tồn tại trong dữ liệu: credit. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_378a68e7ff82: no_result (stdout='')
+🔥 200/1000 | 23.48s/câu | còn ~313.0 phút | có đáp án 135/200 | abstain 65 | lỗi 52 | timeout 0
+❌ q_37d9de7f49d9: NameError: name '__ABSTAIN__' is not defined
+❌ q_382bb57c049d: no_result (stdout='')
+   ⚠️  q_383e2d2f282a: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_383e2d2f282a: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mặt hàng, Số lượng. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_38c42c83e2ff: SyntaxError: closing parenthesis ')' does not match opening parenthesis '[' on line 3 (<sandbox>, line 5)
+🔥 210/1000 | 23.41s/câu | còn ~308.3 phút | có đáp án 140/210 | abstain 70 | lỗi 56 | timeout 0
+   ⚠️  q_39abf982c56e: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_39abf982c56e: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_39b7dafd15a3: KeyError: 'Ngày HĐ'
+   ⚠️  q_3a9665052018: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_3a9665052018: Các giá trị sau KHÔNG tồn tại trong dữ liệu: SoBanHang_T9_2026, SoBanHang_T8_2026, SoBanHang_T7_2026, SoBanHang_T6_2026, SoBanHang_T5_2026. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_3ac94b30991c: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.item(), a.any() or a.all().
+❌ q_3af7b33f08a6: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_3b20bc6d6427: SyntaxError: '(' was never closed (<sandbox>, line 25)
+🔥 220/1000 | 23.75s/câu | còn ~308.8 phút | có đáp án 144/220 | abstain 76 | lỗi 62 | timeout 0
+❌ q_3c935a94dc79: NameError: name 'tuoi_no_t' is not defined
+❌ q_3d231754f550: Code chạy quá 8s
+   ⚠️  q_3da612131082: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_3da612131082: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Họ tên, Hoa hồng (%). Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 230/1000 | 23.93s/câu | còn ~307.2 phút | có đáp án 151/230 | abstain 79 | lỗi 65 | timeout 1
+   ⚠️  q_3de82903c4c6: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_3de82903c4c6: KeyError: 'ChiTietHoaDon_1'
+❌ q_3f0d7d1b1eb1: KeyError: 'Ngày HĐ'
+🔥 240/1000 | 23.83s/câu | còn ~301.9 phút | có đáp án 159/240 | abstain 81 | lỗi 67 | timeout 1
+   ⚠️  q_403bdc83bc9c: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_403bdc83bc9c: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Đơn số, Count. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_408c2137f088: SyntaxError: '[' was never closed (<sandbox>, line 26)
+❌ q_409bb74c67b4: NameError: name 'khach_hang_mua_5_' is not defined
+❌ q_411cb8ae0f94: IndexError: single positional indexer is out-of-bounds
+❌ q_41922e7c51ec: no_result (stdout='')
+🔥 250/1000 | 23.93s/câu | còn ~299.1 phút | có đáp án 164/250 | abstain 86 | lỗi 72 | timeout 1
+❌ q_427b79554ed7: KeyError: 'ten_hang'
+🔥 260/1000 | 23.67s/câu | còn ~291.9 phút | có đáp án 173/260 | abstain 87 | lỗi 73 | timeout 1
+❌ q_45cb42f4dc7b: SyntaxError: unterminated string literal (detected at line 17) (<sandbox>, line 17)
+   ⚠️  q_45d6cbc135b3: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_45d6cbc135b3: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Giờ tạo đơn, Tổng thanh toán. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_4633acb03075: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_473593cb045c: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_473593cb045c: Các giá trị sau KHÔNG tồn tại trong dữ liệu: SoBanHang_T9_2026, SoBanHang_T8_2026, SoBanHang_T7_2026, SoBanHang_T6_2026, SoBanHang_T5_2026. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_47d9c87fa49d: SyntaxError: '(' was never closed (<sandbox>, line 17)
+🔥 270/1000 | 24.00s/câu | còn ~292.0 phút | có đáp án 178/270 | abstain 92 | lỗi 78 | timeout 1
+❌ q_4809f845893d: KeyError: 'Ngày HĐ'
+❌ q_4812f4775924: FileNotFoundError: [Errno 2] No such file or directory: 'banhang_thang7_2025.csv'
+❌ q_481401f5b908: ValueError: NaTType does not support strftime
+❌ q_481f40acc2f3: AttributeError: Can only use .dt accessor with datetimelike values
+🔥 280/1000 | 24.04s/câu | còn ~288.5 phút | có đáp án 181/280 | abstain 99 | lỗi 82 | timeout 1
+❌ q_4b260819febf: SyntaxError: '{' was never closed (<sandbox>, line 4)
+🔥 290/1000 | 23.77s/câu | còn ~281.2 phút | có đáp án 190/290 | abstain 100 | lỗi 83 | timeout 1
+   ⚠️  q_4bb10819b3a3: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_4c849b6df27d: KeyError: 'Ngày HĐ'
+   ⚠️  q_4c8fda6cf0df: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_4c8fda6cf0df: Các giá trị sau KHÔNG tồn tại trong dữ liệu: MaKhachHang, TenGoi. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_4cb8711073bd: SyntaxError: unterminated string literal (detected at line 11) (<sandbox>, line 11)
+🔥 300/1000 | 23.72s/câu | còn ~276.8 phút | có đáp án 196/300 | abstain 104 | lỗi 86 | timeout 1
+❌ q_4d20e306e0bc: KeyError: 'MaHangHoa'
+❌ q_4e1c4ca89508: SyntaxError: '[' was never closed (<sandbox>, line 26)
+❌ q_4e331ce1a042: ValueError: ('Lengths must match to compare', (121067,), (7,))
+🔥 310/1000 | 23.65s/câu | còn ~272.0 phút | có đáp án 203/310 | abstain 107 | lỗi 89 | timeout 1
+❌ q_4ef479fd4803: NameError: name 'total_revenue_th9_2' is not defined
+❌ q_501cc0b20b1b: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon, MaHangHoa, NgayLap, IDCuaHang. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_508b7320c153: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_508b7320c153: KeyError: 'Ngày'
+   ⚠️  q_5176249df658: code hardcode giá trị không có trong dữ liệu -> sửa
+🔥 320/1000 | 23.72s/câu | còn ~268.9 phút | có đáp án 209/320 | abstain 111 | lỗi 92 | timeout 1
+❌ q_51b4d4e4e063: KeyError: 'SoNo_Trả_góp'
+❌ q_51b767a7dd05: no_result (stdout='')
+❌ q_5217c0d650c8: no_result (stdout='')
+❌ q_522627a83f38: SyntaxError: unterminated string literal (detected at line 14) (<sandbox>, line 14)
+🔥 330/1000 | 23.75s/câu | còn ~265.2 phút | có đáp án 215/330 | abstain 115 | lỗi 96 | timeout 1
+❌ q_5598af728eea: Các giá trị sau KHÔNG tồn tại trong dữ liệu: MaHoaDon. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 340/1000 | 23.55s/câu | còn ~259.1 phút | có đáp án 223/340 | abstain 117 | lỗi 97 | timeout 1
+❌ q_569dcd86abb4: ValueError: cannot convert float NaN to integer
+❌ q_56ffb6b638d7: SyntaxError: unterminated string literal (detected at line 10) (<sandbox>, line 10)
+   ⚠️  q_575157e63e1c: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_575157e63e1c: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Họ tên khách, Thành tiền. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_57632dfbe478: code hardcode giá trị không có trong dữ liệu -> sửa
+🔥 350/1000 | 23.57s/câu | còn ~255.3 phút | có đáp án 228/350 | abstain 122 | lỗi 100 | timeout 1
+❌ q_583a942f4d85: NameError: name 'trung_binh_tien_h' is not defined
+❌ q_5860bae9659f: SyntaxError: '(' was never closed (<sandbox>, line 19)
+❌ q_588a7c489b8e: NameError: name 'chi_tiet_nhap' is not defined
+❌ q_5896bf2cce00: NameError: name '__UNANSWERABLE__' is not defined
+🔥 360/1000 | 23.64s/câu | còn ~252.2 phút | có đáp án 232/360 | abstain 128 | lỗi 104 | timeout 1
+❌ q_59b28582f30e: SyntaxError: '[' was never closed (<sandbox>, line 16)
+❌ q_5a5a452f87d4: no_result (stdout='')
+❌ q_5aad27b686f6: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 370/1000 | 23.58s/câu | còn ~247.5 phút | có đáp án 239/370 | abstain 131 | lỗi 107 | timeout 1
+❌ q_5c0acaa8786b: KeyError: 'Đã góp'
+❌ q_5d05956fc827: NameError: name 'phan_tram_tang_gro' is not defined
+🔥 380/1000 | 23.56s/câu | còn ~243.5 phút | có đáp án 247/380 | abstain 133 | lỗi 109 | timeout 2
+❌ q_5dce492e5f1a: no_result (stdout='')
+❌ q_5e570feb5c4c: SyntaxError: '(' was never closed (<sandbox>, line 16)
+❌ q_5e7b3b2822b9: KeyError: 'TinhTrang'
+❌ q_5f2d481dc5d4: KeyError: 'Ngày HĐ'
+🔥 390/1000 | 23.64s/câu | còn ~240.3 phút | có đáp án 253/390 | abstain 137 | lỗi 113 | timeout 2
+   ⚠️  q_605c59254c52: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_605c59254c52: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Số CT, Thành tiền. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_611bf24dd2f9: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_611bf24dd2f9: Các giá trị sau KHÔNG tồn tại trong dữ liệu: MaNhaCungCap, TenGoi. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 400/1000 | 23.56s/câu | còn ~235.6 phút | có đáp án 261/400 | abstain 139 | lỗi 115 | timeout 2
+   ⚠️  q_62010007db00: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_62010007db00: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Tháng, Doanh Thu. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 410/1000 | 23.33s/câu | còn ~229.5 phút | có đáp án 269/410 | abstain 141 | lỗi 116 | timeout 2
+❌ q_6396e1b202a6: KeyError: 'Trạng thái'
+❌ q_63cf15f33b1c: no_result (stdout='')
+   ⚠️  q_64e62d4bea7d: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_64e62d4bea7d: Các giá trị sau KHÔNG tồn tại trong dữ liệu: NumberOfWeeklyOrders, AverageOrderValue. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_65162e8741f6: SyntaxError: '(' was never closed (<sandbox>, line 23)
+❌ q_65b2eba9c91c: AttributeError: Can only use .dt accessor with datetimelike values
+🔥 420/1000 | 23.43s/câu | còn ~226.5 phút | có đáp án 274/420 | abstain 146 | lỗi 121 | timeout 2
+❌ q_690a98214478: SyntaxError: unterminated string literal (detected at line 21) (<sandbox>, line 21)
+   ⚠️  q_693e2a329c10: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_693e2a329c10: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã sản phẩm bán, Mã người mua, Tổng số tiền, Tên khách hàng. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 430/1000 | 23.39s/câu | còn ~222.2 phút | có đáp án 280/430 | abstain 150 | lỗi 123 | timeout 2
+🔥 440/1000 | 23.24s/câu | còn ~216.9 phút | có đáp án 290/440 | abstain 150 | lỗi 123 | timeout 2
+❌ q_6b9c81934530: KeyError: 'Ngày giao dịch'
+❌ q_6bd9c92d0d7e: no_result (stdout='')
+   ⚠️  q_6c4f54f5fb85: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_6c4f54f5fb85: Các giá trị sau KHÔNG tồn tại trong dữ liệu: MaHangHoa, TenGoi. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 450/1000 | 23.21s/câu | còn ~212.8 phút | có đáp án 297/450 | abstain 153 | lỗi 126 | timeout 2
+❌ q_6cb40ee1f329: KeyError: 'MaHangHoa'
+❌ q_6d42e3d7b79b: KeyError: 'Đã góp'
+❌ q_6e929cf36203: KeyError: 'Column not found: Điểm hiện tại'
+   ⚠️  q_6ed01172bd03: code hardcode giá trị không có trong dữ liệu -> sửa
+🔥 460/1000 | 23.17s/câu | còn ~208.5 phút | có đáp án 303/460 | abstain 157 | lỗi 129 | timeout 2
+❌ q_6fbb662472fc: SyntaxError: invalid syntax (<unknown>, line 1)
+❌ q_715e82ce7602: SyntaxError: unterminated string literal (detected at line 17) (<sandbox>, line 17)
+   ⚠️  q_715e9ea420ef: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_715e9ea420ef: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 470/1000 | 23.10s/câu | còn ~204.0 phút | có đáp án 310/470 | abstain 160 | lỗi 132 | timeout 2
+❌ q_733500e5c7a7: KeyError: 'SoBanHang_T11_2025'
+   ⚠️  q_73aa64c2c7cf: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_73aa64c2c7cf: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã người mua, Đơn vị (tính), Phi ship, Thành tiền, Giảm (đ). Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_763243ad81fd: KeyError: 'Giá thu'
+🔥 480/1000 | 23.09s/câu | còn ~200.1 phút | có đáp án 316/480 | abstain 164 | lỗi 135 | timeout 2
+❌ q_76bdadbeb802: ValueError: attempt to get argmax of an empty sequence
+❌ q_76edb5c73d98: SyntaxError: unterminated string literal (detected at line 16) (<sandbox>, line 16)
+   ⚠️  q_77085d36e011: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_77085d36e011: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Hàng bán, Giá vốn. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_77ce65543f25: SyntaxError: '{' was never closed (<sandbox>, line 4)
+❌ q_780126890512: KeyError: 'Ngày HĐ'
+🔥 490/1000 | 23.16s/câu | còn ~196.8 phút | có đáp án 320/490 | abstain 170 | lỗi 140 | timeout 2
+   ⚠️  q_7826ef06d11c: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_7826ef06d11c: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Số lượng. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_78737a198776: SyntaxError: '(' was never closed (<sandbox>, line 21)
+   ⚠️  q_78b932b4a560: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_78b932b4a560: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã sản phẩm bán, Giá vốn. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 500/1000 | 23.16s/câu | còn ~193.0 phút | có đáp án 327/500 | abstain 173 | lỗi 143 | timeout 2
+❌ q_79a79df3f048: SyntaxError: '(' was never closed (<sandbox>, line 25)
+   ⚠️  q_7ab1e13137e3: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_7ab1e13137e3: Các giá trị sau KHÔNG tồn tại trong dữ liệu: 0–7 ngày, 8–15 ngày, Trên 15 ngày. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_7bc2b2afb992: SyntaxError: '(' was never closed (<sandbox>, line 21)
+   ⚠️  q_7cba4252429f: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_7cba4252429f: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Doanh Thu. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 510/1000 | 23.21s/câu | còn ~189.6 phút | có đáp án 333/510 | abstain 177 | lỗi 147 | timeout 2
+❌ q_7d236c308111: SyntaxError: invalid syntax (<sandbox>, line 18)
+   ⚠️  q_7d7ea7cccf26: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_7d7ea7cccf26: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã khách, Count. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 520/1000 | 23.09s/câu | còn ~184.7 phút | có đáp án 338/520 | abstain 182 | lỗi 149 | timeout 2
+❌ q_807c3cdae34f: no_result (stdout='')
+❌ q_81bd98f792f6: AttributeError: 'Series' object has no attribute 'year'
+🔥 530/1000 | 22.96s/câu | còn ~179.8 phút | có đáp án 346/530 | abstain 184 | lỗi 151 | timeout 2
+❌ q_83107c3303b5: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_84edb29b003b: KeyError: 'Mã khách'
+🔥 540/1000 | 22.89s/câu | còn ~175.5 phút | có đáp án 354/540 | abstain 186 | lỗi 153 | timeout 2
+❌ q_859861209455: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Ngày giao dịch, Thành tiền, Ngày giao dịch, Thành tiền, Ngày giao dịch. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_86198c3c128b: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_86198c3c128b: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon, IDCuaHang, MaHoaDon, IDCuaHang. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_8818447349a6: SyntaxError: '{' was never closed (<sandbox>, line 4)
+🔥 550/1000 | 22.86s/câu | còn ~171.5 phút | có đáp án 361/550 | abstain 189 | lỗi 156 | timeout 2
+❌ q_8865baf2a84d: NameError: name '__ABSTAIN__' is not defined
+❌ q_89d88aa1eae8: no_result (stdout='')
+❌ q_8a85aa9be5ef: no_result (stdout='')
+   ⚠️  q_8c680cbcf6b0: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_8c680cbcf6b0: NameError: name 'filtered_df' is not defined
+   ⚠️  q_8c88fcb609eb: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_8c88fcb609eb: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 560/1000 | 22.96s/câu | còn ~168.4 phút | có đáp án 366/560 | abstain 194 | lỗi 161 | timeout 2
+🔥 570/1000 | 22.86s/câu | còn ~163.8 phút | có đáp án 373/570 | abstain 197 | lỗi 161 | timeout 2
+❌ q_91368b04415b: SyntaxError: '(' was never closed (<sandbox>, line 22)
+🔥 580/1000 | 22.76s/câu | còn ~159.3 phút | có đáp án 381/580 | abstain 199 | lỗi 162 | timeout 2
+❌ q_9142ba5ec94a: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Giá cũ, Mã H.hóa, Ngày áp dụng, Giá mới, Giá cũ. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_91a333e16eae: NameError: name 'total_revenue' is not defined
+❌ q_935d887c9cd9: KeyError: 'Đối tượng KH'
+❌ q_936c6ef612b2: SyntaxError: unterminated string literal (detected at line 17) (<sandbox>, line 17)
+🔥 590/1000 | 22.78s/câu | còn ~155.6 phút | có đáp án 386/590 | abstain 204 | lỗi 166 | timeout 2
+❌ q_93ff6d28c50b: KeyError: 'Ngày HĐ'
+❌ q_9498d6b37278: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_94acd8f437f4: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_94acd8f437f4: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHangHoa, TenGoi, MaHangHoa. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_95f39e8f5fd0: NameError: name '__ABSTAIN__' is not defined
+🔥 600/1000 | 22.83s/câu | còn ~152.2 phút | có đáp án 392/600 | abstain 208 | lỗi 170 | timeout 2
+❌ q_980cef2c769c: NameError: name 'total_amount_' is not defined
+❌ q_99e67ed05dd8: no_result (stdout='')
+❌ q_99f979b5d0b4: SyntaxError: unmatched '}' (<sandbox>, line 3)
+🔥 610/1000 | 22.85s/câu | còn ~148.5 phút | có đáp án 398/610 | abstain 212 | lỗi 173 | timeout 2
+❌ q_9a905959d8ff: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_9ab76e4d9f5e: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_9ab76e4d9f5e: Các giá trị sau KHÔNG tồn tại trong dữ liệu: MaKhachHang, TenKhachHang. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_9b5377726889: Các giá trị sau KHÔNG tồn tại trong dữ liệu: BanHang_T9_2025, BanHang_T8_2025, BanHang_T7_2025, BanHang_T6_2025, BanHang_T5_2025. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_9c2c85d9330d: no_result (stdout='')
+🔥 620/1000 | 22.86s/câu | còn ~144.8 phút | có đáp án 403/620 | abstain 217 | lỗi 177 | timeout 2
+🔥 630/1000 | 22.81s/câu | còn ~140.7 phút | có đáp án 411/630 | abstain 219 | lỗi 177 | timeout 2
+❌ q_a0046e6fede0: KeyError: 'DienGiai'
+🔥 640/1000 | 22.75s/câu | còn ~136.5 phút | có đáp án 420/640 | abstain 220 | lỗi 178 | timeout 2
+❌ q_a2ed59a92ab8: KeyError: 'Ngày giao dịch'
+❌ q_a6cf2d550014: SyntaxError: closing parenthesis ')' does not match opening parenthesis '[' (<sandbox>, line 3)
+🔥 650/1000 | 22.67s/câu | còn ~132.3 phút | có đáp án 428/650 | abstain 222 | lỗi 180 | timeout 2
+❌ q_a7dd46bc4b38: KeyError: 'Column not found: Soluong'
+❌ q_a8d7ce013c6d: AttributeError: 'DataFrame' object has no attribute 'name'
+🔥 660/1000 | 22.69s/câu | còn ~128.6 phút | có đáp án 434/660 | abstain 226 | lỗi 182 | timeout 2
+❌ q_a91c8a25a22f: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon, MaChiNhanh, MaKhachHang, MaNhanVien. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_a9f96bee3fa4: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Thành tiền, Nhóm khách hàng, Mặt hàng, Ngày giao dịch, 2026-06-01 00:00:00. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_aa47ce3a127a: KeyError: 'Ngày HĐ'
+❌ q_aa7c51569962: NameError: name 'doanh_th' is not defined
+❌ q_ab0d1507c71c: no_result (stdout='')
+❌ q_ab14596b6b93: NameError: name 'previous' is not defined
+🔥 670/1000 | 22.83s/câu | còn ~125.5 phút | có đáp án 436/670 | abstain 234 | lỗi 188 | timeout 2
+❌ q_ad512cd0cb75: AttributeError: Can only use .str accessor with string values, not datetime64
+🔥 680/1000 | 22.72s/câu | còn ~121.2 phút | có đáp án 444/680 | abstain 236 | lỗi 189 | timeout 2
+❌ q_af96aaf1f4e2: NameError: name 'list_don_ban' is not defined
+❌ q_b0bffe2031c5: SyntaxError: unterminated string literal (detected at line 3) (<sandbox>, line 3)
+🔥 690/1000 | 22.72s/câu | còn ~117.4 phút | có đáp án 450/690 | abstain 240 | lỗi 191 | timeout 2
+❌ q_b3059f66db30: AttributeError: Can only use .str accessor with string values, not datetime64
+🔥 700/1000 | 22.66s/câu | còn ~113.3 phút | có đáp án 459/700 | abstain 241 | lỗi 192 | timeout 2
+❌ q_b3c49510b3b7: NameError: name 'percentage_chemicals' is not defined
+❌ q_b3c75e9f2c97: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_b47894fc33f6: SyntaxError: unterminated string literal (detected at line 14) (<sandbox>, line 14)
+❌ q_b4ad3b8d023f: SyntaxError: unterminated string literal (detected at line 5) (<sandbox>, line 5)
+❌ q_b5034a203b3b: no_result (stdout='')
+🔥 710/1000 | 22.78s/câu | còn ~110.1 phút | có đáp án 463/710 | abstain 247 | lỗi 197 | timeout 2
+   ⚠️  q_b6abccb6b3cb: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_b6abccb6b3cb: Các giá trị sau KHÔNG tồn tại trong dữ liệu: SoBanHang_T, _2026. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_b6d81403be69: NameError: name 'df_banhang' is not defined
+❌ q_b7ad6a55cf62: SyntaxError: closing parenthesis ')' does not match opening parenthesis '[' (<sandbox>, line 3)
+🔥 720/1000 | 22.71s/câu | còn ~106.0 phút | có đáp án 470/720 | abstain 250 | lỗi 200 | timeout 2
+❌ q_b88ec465ade3: KeyError: 'Đơn số'
+❌ q_ba2fc11fac40: SyntaxError: invalid syntax (<sandbox>, line 14)
+🔥 730/1000 | 22.74s/câu | còn ~102.3 phút | có đáp án 476/730 | abstain 254 | lỗi 202 | timeout 2
+   ⚠️  q_bbfddbd1d363: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_bbfddbd1d363: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_bc879c2a6de5: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_bc879c2a6de5: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Khách lẻ/sỉ, Tổng điểm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_bd0fbda87c14: KeyError: 'MaHangHoa'
+🔥 740/1000 | 22.78s/câu | còn ~98.7 phút | có đáp án 481/740 | abstain 259 | lỗi 205 | timeout 2
+❌ q_be4ad5df428d: KeyError: 'ChiTietHoaDon_1'
+❌ q_bfe72da5b2f7: ValueError: cannot convert float NaN to integer
+   ⚠️  q_bfecad2e9a15: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_bfecad2e9a15: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Tên hàng. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 750/1000 | 22.74s/câu | còn ~94.7 phút | có đáp án 488/750 | abstain 262 | lỗi 208 | timeout 2
+❌ q_c0287211ca77: NameError: name '__UNANSWERABLE__' is not defined
+❌ q_c0a590d269df: AttributeError: Can only use .str accessor with string values, not datetime64
+   ⚠️  q_c16ed84d6481: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_c16ed84d6481: ZeroDivisionError: division by zero
+🔥 760/1000 | 22.72s/câu | còn ~90.9 phút | có đáp án 495/760 | abstain 265 | lỗi 211 | timeout 2
+   ⚠️  q_c1a3be0d7376: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_c28a03d7a959: KeyError: 'BanHang_TongHop_2025_BanHang'
+❌ q_c2eaa7985cf2: NameError: name '__UNANSWERABLE__' is not defined
+❌ q_c3158f13ca1c: SyntaxError: '[' was never closed (<sandbox>, line 17)
+❌ q_c33e026f59e7: SyntaxError: closing parenthesis ')' does not match opening parenthesis '[' (<sandbox>, line 3)
+🔥 770/1000 | 22.76s/câu | còn ~87.2 phút | có đáp án 500/770 | abstain 270 | lỗi 215 | timeout 2
+❌ q_c65b4afeafd1: SyntaxError: '(' was never closed (<sandbox>, line 19)
+❌ q_c6940f281136: NameError: name 'total' is not defined
+   ⚠️  q_c69505022fd3: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_c69505022fd3: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Làm gì, Ghi chú, Làm gì, Ghi chú, Họ tên. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 780/1000 | 22.79s/câu | còn ~83.6 phút | có đáp án 507/780 | abstain 273 | lỗi 218 | timeout 2
+❌ q_c810dcd56aa3: SyntaxError: unterminated string literal (detected at line 24) (<sandbox>, line 24)
+❌ q_c8f95328ca75: no_result (stdout='')
+❌ q_c8fde55544b6: KeyError: 'Time of Delivery'
+🔥 790/1000 | 22.81s/câu | còn ~79.8 phút | có đáp án 513/790 | abstain 277 | lỗi 221 | timeout 2
+❌ q_ca1e5f9e682b: KeyError: 'Ngày đặt'
+   ⚠️  q_caba1ee84f03: code hardcode giá trị không có trong dữ liệu -> sửa
+🔥 800/1000 | 22.76s/câu | còn ~75.9 phút | có đáp án 521/800 | abstain 279 | lỗi 222 | timeout 2
+❌ q_cc893126c047: IndexError: single positional indexer is out-of-bounds
+❌ q_cdd8eec83c7a: KeyError: 'Giờ bán'
+   ⚠️  q_ce16270f4c20: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_ce16270f4c20: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Giá cũ, Mã H.hóa, Ngày áp dụng, Giá mới, Giá cũ. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_ce3bd6c20b25: SyntaxError: '{' was never closed (<sandbox>, line 20)
+🔥 810/1000 | 22.84s/câu | còn ~72.3 phút | có đáp án 526/810 | abstain 284 | lỗi 226 | timeout 2
+❌ q_ce8675d1ef06: NameError: name '__UNANSWERABLE__' is not defined
+❌ q_cfa36137a14a: SyntaxError: unterminated string literal (detected at line 5) (<sandbox>, line 5)
+❌ q_d08785ea5577: NameError: name '__UNANSWERABLE__' is not defined
+🔥 820/1000 | 22.86s/câu | còn ~68.6 phút | có đáp án 532/820 | abstain 288 | lỗi 229 | timeout 2
+   ⚠️  q_d2f89e3c815d: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_d2f89e3c815d: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Nhóm hàng, Phần trăm đóng góp. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_d3390eedd851: TypeError: '<=' not supported between instances of 'Timestamp' and 'str'
+❌ q_d3b768308def: SyntaxError: '(' was never closed (<sandbox>, line 22)
+   ⚠️  q_d41b61e31b85: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_d41b61e31b85: Các giá trị sau KHÔNG tồn tại trong dữ liệu: NgayLap, SoLuongDonHang, lunar_month. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_d4b2f0aaf69a: KeyError: 'Ngày'
+🔥 830/1000 | 22.90s/câu | còn ~64.9 phút | có đáp án 537/830 | abstain 293 | lỗi 234 | timeout 2
+   ⚠️  q_d4ef0c5d0bb2: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_d4ef0c5d0bb2: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã H.hóa, Tổng Số Luông Bán. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_d5157cc4acfe: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_d52c9b04ca54: NameError: name '__UNANSWERABLE__' is not defined
+❌ q_d5d84e9e6570: KeyError: 'Mã H.hóa'
+   ⚠️  q_d62189fd9ee2: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_d62189fd9ee2: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.item(), a.any() or a.all().
+   ⚠️  q_d62edb3b5bc6: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_d62edb3b5bc6: no_result (stdout='')
+🔥 840/1000 | 22.96s/câu | còn ~61.2 phút | có đáp án 541/840 | abstain 299 | lỗi 240 | timeout 2
+❌ q_d6ff23824813: no_result (stdout='')
+❌ q_d76d6563e547: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaPhieuNhap, MaNhaCungCap, MaChiNhanh, NgayNhapKho. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_d770b2c75598: SyntaxError: unterminated string literal (detected at line 25) (<sandbox>, line 25)
+🔥 850/1000 | 22.94s/câu | còn ~57.4 phút | có đáp án 548/850 | abstain 302 | lỗi 243 | timeout 2
+❌ q_d9f743469198: no_result (stdout='')
+🔥 860/1000 | 22.89s/câu | còn ~53.4 phút | có đáp án 557/860 | abstain 303 | lỗi 244 | timeout 2
+❌ q_dd2362109dd4: SyntaxError: '[' was never closed (<sandbox>, line 20)
+❌ q_de54a69c7dce: no_result (stdout='')
+❌ q_de76013dcb99: SyntaxError: '[' was never closed (<sandbox>, line 14)
+🔥 870/1000 | 22.95s/câu | còn ~49.7 phút | có đáp án 564/870 | abstain 306 | lỗi 247 | timeout 2
+❌ q_e096ce51b13d: NameError: name 'percentage' is not defined
+❌ q_e0e7974d6923: no_result (stdout='')
+❌ q_e2ad9e83d06a: SyntaxError: invalid syntax (<sandbox>, line 19)
+🔥 880/1000 | 23.00s/câu | còn ~46.0 phút | có đáp án 570/880 | abstain 310 | lỗi 250 | timeout 2
+❌ q_e2bfd7f28a9a: SyntaxError: unterminated string literal (detected at line 24) (<sandbox>, line 24)
+❌ q_e2e4e0639619: AttributeError: Can only use .str accessor with string values, not integer
+❌ q_e322d691b4be: SyntaxError: invalid syntax (<sandbox>, line 19)
+❌ q_e4f0a9bdf74b: no_result (stdout='')
+🔥 890/1000 | 23.07s/câu | còn ~42.3 phút | có đáp án 575/890 | abstain 315 | lỗi 254 | timeout 2
+   ⚠️  q_e4fc0d18d409: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_e4fc0d18d409: ValueError: No objects to concatenate
+❌ q_e6ccb4744594: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Bàn 01, Thành tiền, Ngày giao dịch, 2025-02-01 00:00:00, Bàn 02. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 900/1000 | 23.02s/câu | còn ~38.4 phút | có đáp án 583/900 | abstain 317 | lỗi 256 | timeout 2
+🔥 910/1000 | 22.95s/câu | còn ~34.4 phút | có đáp án 590/910 | abstain 320 | lỗi 256 | timeout 2
+🔥 920/1000 | 22.91s/câu | còn ~30.5 phút | có đáp án 598/920 | abstain 322 | lỗi 256 | timeout 2
+   ⚠️  q_ee2df6a3e957: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_ee2df6a3e957: Các giá trị sau KHÔNG tồn tại trong dữ liệu: MaKhachHang, TenGoi, TenGoi, TongTienHang. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_ee58dba4a73e: SyntaxError: '[' was never closed (<sandbox>, line 13)
+❌ q_effb17cba303: KeyError: 'Giá hàng'
+🔥 930/1000 | 22.88s/câu | còn ~26.7 phút | có đáp án 604/930 | abstain 326 | lỗi 259 | timeout 2
+❌ q_f09bd63b0751: NameError: name '__UNANSWER' is not defined
+🔥 940/1000 | 22.81s/câu | còn ~22.8 phút | có đáp án 612/940 | abstain 328 | lỗi 260 | timeout 2
+❌ q_f1c0ff1d2330: KeyError: 'GiaVonLucBan'
+   ⚠️  q_f264ab49a2c8: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_f264ab49a2c8: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon, IDCuaHang, MaHangHoa. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_f274c9241995: SyntaxError: '{' was never closed (<sandbox>, line 5)
+❌ q_f30748b72898: SyntaxError: unterminated string literal (detected at line 27) (<sandbox>, line 27)
+   ⚠️  q_f37ffc2cfd0c: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_f37ffc2cfd0c: SyntaxError: unterminated string literal (detected at line 21) (<sandbox>, line 21)
+❌ q_f3a93a869037: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Monday, Tuesday, Wednesday, January, February. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 950/1000 | 22.90s/câu | còn ~19.1 phút | có đáp án 615/950 | abstain 335 | lỗi 266 | timeout 2
+❌ q_f53d89a0743e: SyntaxError: unterminated string literal (detected at line 5) (<sandbox>, line 5)
+❌ q_f56deeb4120b: SyntaxError: unterminated string literal (detected at line 12) (<sandbox>, line 12)
+🔥 960/1000 | 22.87s/câu | còn ~15.2 phút | có đáp án 622/960 | abstain 338 | lỗi 268 | timeout 2
+❌ q_f86ac4d1df98: AttributeError: Can only use .str accessor with string values, not datetime64
+❌ q_f9182884552a: SyntaxError: unterminated string literal (detected at line 26) (<sandbox>, line 26)
+❌ q_f971c5fb2353: FileNotFoundError: [Errno 2] No such file or directory: 'danh_muc_hang.csv'
+🔥 970/1000 | 22.88s/câu | còn ~11.4 phút | có đáp án 628/970 | abstain 342 | lỗi 271 | timeout 2
+   ⚠️  q_fa1084dc1d3f: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_fa1084dc1d3f: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHangHoa, DonViTinh. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_facbc1f20a16: NameError: name '__UNANSWERABLE__' is not defined
+❌ q_fb409424a396: KeyError: 'MaHoaDon'
+   ⚠️  q_fb4bf09137a7: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_fb4bf09137a7: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã người mua, Đơn vị (tính), Phi ship, Thành tiền, Giảm (đ). Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 980/1000 | 22.89s/câu | còn ~7.6 phút | có đáp án 633/980 | abstain 347 | lỗi 275 | timeout 2
+   ⚠️  q_fbb0ba502475: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_fbb0ba502475: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã NV bán, Khách hàng mua, Công nợ. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+   ⚠️  q_fbc812dde384: code hardcode giá trị không có trong dữ liệu -> sửa
+❌ q_fbc812dde384: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã vạch, ten_hang. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_fc4f06f3006b: Các giá trị sau KHÔNG tồn tại trong dữ liệu: Mã đơn hàng, Ngày đặt hàng, Trạng thái đơn hàng, Tên khách hàng, Tên sản phẩm. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+❌ q_fc8cdf9ab156: Các giá trị sau KHÔNG tồn tại trong dữ liệu: IDCuaHang, MaHoaDon, NgayLap, 2025-10-01 00:00:00, TongTienHang. Không được hardcode danh sách; hãy lọc từ dữ liệu bằng .str.contains(...), isin(df['cột'].unique()) hoặc groupby.
+🔥 990/1000 | 22.92s/câu | còn ~3.8 phút | có đáp án 639/990 | abstain 351 | lỗi 279 | timeout 2
+❌ q_fe36c469e9f8: NameError: name 'don_tra_h' is not defined
+❌ q_ff354156a3c4: SyntaxError: unterminated string literal (detected at line 5) (<sandbox>, line 5)
+❌ q_ffd749264313: SyntaxError: unterminated string literal (detected at line 5) (<sandbox>, line 5)
+🔥 1000/1000 | 22.93s/câu | còn ~0.0 phút | có đáp án 645/1000 | abstain 355 | lỗi 282 | timeout 2
+
+🎉 Hoàn thành: 1000/1000 câu -> E:\workspace\zaloaic2026_nguyen\submission_v2.jsonl
+   Thời gian: 382.2 phút | lỗi: 282 | timeout: 2
+   Thống kê: submission_v2.stats.json
+
+📊 E:\workspace\zaloaic2026_nguyen\submission_v2.jsonl
+   Câu hỏi       : 1000
+   Dòng hợp lệ   : 1000
+   Theo type     : {'number': 488, 'abstain': 328, 'percent': 80, 'string': 54, 'unanswerable': 27, 'date': 12, 'list': 8, 'boolean': 3}
+   Có đáp án     : 645  |  Abstain: 328
+✅ File submission hợp lệ về format và đủ id.

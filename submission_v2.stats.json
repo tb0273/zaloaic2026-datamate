@@ -1,0 +1,21 @@
+{
+  "output": "E:\\workspace\\zaloaic2026_nguyen\\submission_v2.jsonl",
+  "questions": 1000,
+  "written": 1000,
+  "elapsed_minutes": 382.24,
+  "failed_codegen": 282,
+  "timeouts": 2,
+  "type_counts": {
+    "string": 54,
+    "number": 488,
+    "list": 8,
+    "percent": 80,
+    "unanswerable": 27,
+    "abstain": 328,
+    "date": 12,
+    "boolean": 3
+  },
+  "backend": "auto",
+  "adapter": "E:\\workspace\\zaloaic2026_nguyen\\datamate_lora_adapter\\lora_adapter",
+  "timestamp": "2026-11-04T06:37:40"
+}

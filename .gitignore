@@ -23,6 +23,11 @@ submission*.jsonl
 *.log
 run*.txt
 
+# Ngoại lệ: giữ lại kết quả run đầy đủ 1000 câu để so sánh
+!submission_v2.jsonl
+!submission_v2.stats.json
+!run2.log
+
 # File tạm khi debug
 _t*.py
 _t*.jsonl
